@@ -12,3 +12,6 @@
     overflow-x: hidden;
   }
   
+  .navbar {
+    background-color: var(--preto);
+  }

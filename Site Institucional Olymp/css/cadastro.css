@@ -35,7 +35,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: var(--preto);
+    background-color: rgb(0, 0, 0, 0.9);
     padding: 30px;
     border-radius: 10px;
     width: 700px;
@@ -76,7 +76,6 @@ input {
     font-size: 17px;
     color: var(--bege);
     line-height: 80px;
-    background-color: var(--preto);
     border-radius: 20px;
     transition: 0.2s ease;
 }

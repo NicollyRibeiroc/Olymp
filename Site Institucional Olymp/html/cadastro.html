@@ -14,85 +14,93 @@
 <body>
 
     <!-- Div pai que abriga todo o conteúdo que engloba as inputs -->
-        <div class="div_boxCadastro">
+    <div class="div_boxCadastro">
 
-            <h2>Criar conta</h2>
+        <h2>Criar conta</h2>
 
-            <!-- Formulário de cadastro -->
-            <form>
+        <!-- Formulário de cadastro -->
+        <form>
 
-                <!-- Campo de Email -->
-                <div class="div_campoCadastro" id="div_campoEmail">
-                    <input type="text" id="i_emailCadastro" required autocomplete="off">
-                    <div class="textoInput">
-                        <i class="fas fa-solid fa-envelope"></i>
-                        <span>Endereço de Email</span>
+            <!-- Campo do Nome -->
+            <div class="div_campoCadastro" id="div_nome">
+                <input type="text" id="i_nome" required autocomplete="off">
+                <div class="textoInput">
+                    <i class="fas fa-solid fa-envelope"></i>
+                    <span> Nome </span>
+                </div>
+            </div>
+
+            <!-- Campo de Email -->
+            <div class="div_campoCadastro" id="div_campoEmail">
+                <input type="text" id="i_emailCadastro" required autocomplete="off">
+                <div class="textoInput">
+                    <i class="fas fa-solid fa-envelope"></i>
+                    <span>Endereço de Email</span>
+                </div>
+            </div>
+
+            <!-- Campo de Telefone -->
+            <div class="div_campoCadastro" id="div_campoTelefone">
+                <input type="text" id="i_telefoneCadastro" oninput="formatar()" maxlength="19" required
+                    autocomplete="off">
+                <div class="textoInput">
+                    <i class="fas fa-phone"></i>
+                    <span>Número de Telefone</span>
+                </div>
+            </div>
+
+            <!-- Campo de Senha -->
+            <div class="div_campoCadastro" id="div_campoSenha">
+                <!-- Botão para revelar a senha -->
+                <button type="button" id="i_buttonEyeSenha" onclick="exibirSenha()" tabindex="-1">
+                    <div id="iconeEyes">
+                        <i class="fa fa-eye-slash" aria-hidden=" true" style="font-size: 18px;"></i>
                     </div>
+                </button>
+                <input type="password" id="i_senhaCadastro" oninput="validarSenha()" required autocomplete="off">
+                <div class="textoInput">
+                    <i class="fas fa-lock"></i>
+                    <span>Senha</span>
                 </div>
+            </div>
 
-                <!-- Campo de Telefone -->
-                <div class="div_campoCadastro" id="div_campoTelefone">
-                    <input type="text" id="i_telefoneCadastro" oninput="formatar()" maxlength="19" required
-                        autocomplete="off">
-                    <div class="textoInput">
-                        <i class="fas fa-phone"></i>
-                        <span>Número de Telefone</span>
+            <!-- Requisítos para validar uma senha -->
+            <div id="div_validarSenha">
+                <span class="span_NecSenha">A senha deve conter 8 caracteres, incluindo 1 letra maiúscula, 1 letra
+                    minúscula e 1 caractere especial.</span>
+            </div>
+
+
+            <!-- Campo de Confirmação de Senha -->
+            <div class="div_campoCadastro" id="div_campoConfirmacaoSenha">
+                <!-- Botão para revelar a senha -->
+                <button type="button" id="i_buttonEyeConfSenha" onclick="exibirConfSenha()" tabindex="-1">
+                    <div id="iconeEyes">
+                        <i class="fa fa-eye-slash" aria-hidden=" true" style="font-size: 18px;"></i>
                     </div>
+                </button>
+                <input type="password" id="i_confirmacaoSenhaCadastro" required autocomplete="off">
+                <div class="textoInput">
+                    <i class="fas fa-lock"></i>
+                    <span>Confirmação de Senha</span>
                 </div>
+            </div>
 
-                <!-- Campo de Senha -->
-                <div class="div_campoCadastro" id="div_campoSenha">
-                    <!-- Botão para revelar a senha -->
-                    <button type="button" id="i_buttonEyeSenha" onclick="exibirSenha()" tabindex="-1">
-                        <div id="iconeEyes">
-                            <i class="fa fa-eye-slash" aria-hidden=" true" style="font-size: 18px;"></i>
-                        </div>
-                    </button>
-                    <input type="password" id="i_senhaCadastro" oninput="validarSenha()" required autocomplete="off">
-                    <div class="textoInput">
-                        <i class="fas fa-lock"></i>
-                        <span>Senha</span>
-                    </div>
-                </div>
+        </form>
 
-                <!-- Requisítos para validar uma senha -->
-                <div id="div_validarSenha">
-                    <span class="span_NecSenha">A senha deve conter 8 caracteres, incluindo 1 letra maiúscula, 1 letra
-                        minúscula e 1 caractere especial.</span>
-                </div>
+        <!-- Botão de "Cadastrar" -->
+        <button onclick="cadastrar()" id="botao_login">Cadastrar</button>
 
-
-                <!-- Campo de Confirmação de Senha -->
-                <div class="div_campoCadastro" id="div_campoConfirmacaoSenha">
-                    <!-- Botão para revelar a senha -->
-                    <button type="button" id="i_buttonEyeConfSenha" onclick="exibirConfSenha()" tabindex="-1">
-                        <div id="iconeEyes">
-                            <i class="fa fa-eye-slash" aria-hidden=" true" style="font-size: 18px;"></i>
-                        </div>
-                    </button>
-                    <input type="password" id="i_confirmacaoSenhaCadastro" required autocomplete="off">
-                    <div class="textoInput">
-                        <i class="fas fa-lock"></i>
-                        <span>Confirmação de Senha</span>
-                    </div>
-                </div>
-
-            </form>
-
-            <!-- Botão de "Cadastrar" -->
-            <button onclick="cadastrar()" id="botao_login">Cadastrar</button>
-
-        </div>
+    </div>
     </div>
 
 </body>
-
 </html>
 
 
 
 <script>
-    function formatar() { 
+    function formatar() {
 
         // Formatando o Telefone
         var telefoneCadastro = i_telefoneCadastro.value;
@@ -180,41 +188,42 @@
     // Ao clicar em "Cadastrar", verifica se todos os campos estão corretos de acordo com a Regra de Negócio
     function cadastrar() {
         // Variáveis
+        var nomeCadastro = i_nomeCadastro.value;
         var emailCadastro = i_emailCadastro.value;
         var telefoneCadastro = i_telefoneCadastro.value;
         var senhaCadastro = i_senhaCadastro.value;
         var confirmacaoSenhaCadastro = i_confirmacaoSenhaCadastro.value;
 
         // Validando se todos os campos estão preenchidos
-        if (emailCadastro != "" && telefoneCadastro != "" && senhaCadastro != "" && confirmacaoSenhaCadastro != "") {
-                // Validando se o telefone tem a quantidade de caracteres correta
-                if (telefoneCadastro.length == 19) {
-                    // Validando se o email possui um tamanho adequado e se possuí "@" e "."
-                    if (emailCadastro.includes('@') && emailCadastro.includes('.') && emailCadastro.length >= 7) {
-                        // Validando se a senha está adequada aos requisítos, chamando a função validarSenha()
-                        if (validarSenha() == true) {
-                            // Validando se a senha digitada no campo de Senha é a mesma do campo de Confirmação de Senha
-                            if (senhaCadastro == confirmacaoSenhaCadastro) {
-                                // Redirecionando o usuário para a página inicial com um alerta de boas vindas
-                                alert(`Usuário cadastrado com sucesso! \n \nSeja bem-vindo(a) ao Olymp :)`);
-                                window.location.href = "login.html"
-                            } else {
-                                // Caso a senha inserida no campo Senha não seja a mesma do campo Confirmação de Senha
-                                alert(`As senhas não são iguais`)
-                            }
+        if (nomeCadastro != "" && emailCadastro != "" && telefoneCadastro != "" && senhaCadastro != "" && confirmacaoSenhaCadastro != "") {
+            // Validando se o telefone tem a quantidade de caracteres correta
+            if (telefoneCadastro.length == 19) {
+                // Validando se o email possui um tamanho adequado e se possuí "@" e "."
+                if (emailCadastro.includes('@') && emailCadastro.includes('.') && emailCadastro.length >= 7) {
+                    // Validando se a senha está adequada aos requisítos, chamando a função validarSenha()
+                    if (validarSenha() == true) {
+                        // Validando se a senha digitada no campo de Senha é a mesma do campo de Confirmação de Senha
+                        if (senhaCadastro == confirmacaoSenhaCadastro) {
+                            // Redirecionando o usuário para a página inicial com um alerta de boas vindas
+                            alert(`Usuário cadastrado com sucesso! \n \nSeja bem-vindo(a) ao Olymp :)`);
+                            window.location.href = "login.html"
                         } else {
-                            // Caso a senha inserida não contenha o que é necessário
-                            alert(`Preencha a senha com os requisitos necessários`)
+                            // Caso a senha inserida no campo Senha não seja a mesma do campo Confirmação de Senha
+                            alert(`As senhas não são iguais`)
                         }
                     } else {
-                        // Caso o email não inclua `@` ou `.`
-                        alert(`Email inválido`);
+                        // Caso a senha inserida não contenha o que é necessário
+                        alert(`Preencha a senha com os requisitos necessários`)
                     }
                 } else {
-                    // Caso o tamanho telefone inserido seja menor do que 19 caracteres
-                    alert(`Telefone inválido`)
+                    // Caso o email não inclua `@` ou `.`
+                    alert(`Email inválido`);
                 }
             } else {
+                // Caso o tamanho telefone inserido seja menor do que 19 caracteres
+                alert(`Telefone inválido`)
+            }
+        } else {
             // Caso algum dos campos esteja vazio
             alert(`É necessário preencher todos os campos para concluir o cadastro.`)
         }
