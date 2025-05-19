@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bege: #e6e0c2;
+    --azul: #3a6575;
+    --preto: #000;
+    --marrom:  #503219;
+}
+
+
+body {
+    font-family: 'Poppins', serif;
+    background-color: var(--bege);
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: var(--bege);
+    padding: 0 40px;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid var(--marrom);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logo img {
+    height: 170px;
+    margin-top: 0;
+}
+
+nav a {
+    color: var(--preto);
+    text-decoration: none;
+    margin-left: 25px;
+    font-size: 16px;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: var(--marrom);
+    transition: width 0.3s ease;
+}
+
+nav a:hover {
+    color: var(--azul);
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+.quiz-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 100px; /* compensa o header fixo */
+    box-sizing: border-box;
+}
+
+.quiz-container {
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 500px;
+    width: 100%;
+    margin: 110px auto 0 auto; 
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.pergunta-container h2 {
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    margin: 10px 0;
+}
+
+.botao-resposta {
+    background-color: #a37855;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.botao-resposta:hover {
+    background-color: var(--marrom);
+}
+
+.botao {
+    background-color: var(--preto);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 5px;
+    margin-top: 20px;
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+#resultado h2 {
+    margin-top: 20px;
+    text-align: center;
+    color: #333;
+}
+
+#pontuacao {
+    font-size: 1.5rem;
+    color: #a37855;}

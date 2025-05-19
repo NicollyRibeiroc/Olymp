@@ -123,6 +123,7 @@ h1 {
 .texto p {
     line-height: 1.6;
     margin-right: 20px;
+    font-size: 14px;
 }
 
 button {
@@ -138,4 +139,9 @@ button {
 button:hover {
     background-color: #000;
     border-color: #000;
+}
+
+a {
+    text-decoration: none; 
+    color: inherit;         
 }
