@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 
 <head>
-    <link rel="stylesheet" type="text/css" href="/Site Institucional Olymp/css/cadastro.css">
+    <link rel="stylesheet" type="text/css" href="./css/cadastro.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
@@ -23,7 +23,7 @@
 
             <!-- Campo do Nome -->
             <div class="div_campoCadastro" id="div_nome">
-                <input type="text" id="i_nome" required autocomplete="off">
+                <input type="text" id="i_nomeCadastro" required autocomplete="off">
                 <div class="textoInput">
                     <i class="fas fa-solid fa-envelope"></i>
                     <span> Nome </span>
@@ -180,5 +180,50 @@
             // Caso algum dos campos esteja vazio
             alert(`É necessário preencher todos os campos para concluir o cadastro.`)
         }
+
+    // Enviando o valor da nova input
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+
+
+                nomeServer: nomeCadastro,
+                emailServer: emailCadastro,
+                senhaServer: senhaCadastro
+            }),
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
+
+                if (resposta.ok) {
+                    // cardErro.style.display = "block";
+
+                    // mensagem_erro.innerHTML =
+                    //     "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+                    setTimeout(() => {
+                        window.location = "Login.html";
+                    }, "2000");
+
+                           // limparFormulario();
+                    // finalizarAguardar();
+                } else {
+                    throw "Houve um erro ao tentar realizar o cadastro!";
+                }
+            })
+            .catch(function (resposta) {
+                // console.log(`#ERRO: ${resposta}`);
+                // finalizarAguardar();
+            });
+
+        return false;
     }
+
+
+
 </script>
