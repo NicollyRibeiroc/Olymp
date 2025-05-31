@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', serif;
+    overflow-x: hidden;
+    background-color: #e4dbc2;
+    padding-top: 4.5rem; /* Compensa a altura da navbar fixa */
+}
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* NAVBAR */
+.navbar {
+    background-color: rgba(163, 141, 99, 0.5);
+    height: 4.5rem;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    position: fixed;
+    justify-content: space-between;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+    padding: 0 5%;
+}
+
+.navbar-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.logo img {
+    margin-top: 10px;
+    height: 150px;
+}
+
+.menu-list .nav-list {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    margin-left: 100px;
+}
+
+.menu-list .nav-list li a {
+    font-weight: 300;
+    text-decoration: none;
+    color: white;
+    font-size: 1.1rem;
+    transition: color 0.3s;
+}
+
+.menu-list .nav-list li a:hover {
+    color: #533f24;
+}
+
+.nav-button button {
+    margin-left: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    cursor: pointer;
+    border: 1px solid white;
+}
+
+.nav-button button a {
+    text-decoration: none;
+    color: white;
+}
+
+.nav-button button:hover {
+    background-color: rgba(255, 255, 255, 0.795);
+    transition: background-color 0.3s;
+}
+
+.nav-button button a:hover {
+    color: rgb(83, 62, 34);
+}
+
+/* BANNER */
+.banner {
+    width: 100%;
+    margin-top: 0;
+}
+
+.banner img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+section {
+    margin-bottom: 50px;
+}
+
+h2 {
+    border-left: 8px solid #524a2f;
+    padding-left: 12px;
+    color: #52412e;
+    font-size: 1.8em;
+    margin-bottom: 20px;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.card h3 {
+    margin-top: 0;
+    color: #584c2b;
+}
+
+.card a {
+    color: #6b583b;
+    text-decoration: none;
+}
+
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    background-color: #a3916c;
+    color: white;
+    padding: 30px 20px;
+    text-align: center;
+    font-size: 0.9em;
+    margin-top: 60px;
+}

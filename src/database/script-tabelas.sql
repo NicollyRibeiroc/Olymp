@@ -1,8 +1,8 @@
 CREATE DATABASE Olymp;
 USE Olymp;
 
-CREATE TABLE Cadastro (
-	idCadastro INT PRIMARY KEY auto_increment,
+CREATE TABLE usuario (
+	idUsuario INT PRIMARY KEY auto_increment,
 	nome VARCHAR(45) NOT NULL,
 	email VARCHAR(45) NOT NULL,
 	senha VARCHAR(45) NOT NULL);

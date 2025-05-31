@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <link rel="stylesheet" href="./css/cadastro.css">
+
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Bodoni Moda' rel='stylesheet'>
+    <title>Cadastro</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="bloco_foto">
+            <div class="bloco_cadastro">
+                <h1 class="cadastro">Cadastro</h1>
+                <input id="input_nome" class="inputs" placeholder="Nome" type="text">
+                <div id="div_espaco"></div>
+                <input id="input_emailCadastro" class="inputs" placeholder="E-mail" type="text">
+                <div class="mensagemEmail" id="div_email"></div>
+                <input id="input_senhaCadastro" class="inputs" placeholder="Senha" type="password">
+                <div class="mensagemSenha" id="div_senha"></div>
+                <input id="input_redigite" class="inputs" placeholder="Redigite a senha" type="password">
+                <div class="mensagemRedigite" id="div_redigite"></div>
+                <button class="botaoCadastro" onclick="cadastrar()">Cadastro</button>
+                <h4 class="jae">Já é cadastrado? Clique <a href="login.html">aqui</a> para fazer login</h4>
+
+                <div id="div_mensagem" class="divMensagem"></div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
+<script>
+
+    // Array para armazenar empresas cadastradas para validação de código de ativação 
+    let listaEmpresasCadastradas = [];
+
+    function cadastrar() {
+        // aguardar();
+
+        //Recupere o valor da nova input pelo nome do id
+        // Agora vá para o método fetch logo abaixo
+        var nomeVar = input_nome.value;
+        var emailVar = input_emailCadastro.value;
+        var senhaVar = input_senhaCadastro.value;
+        var confirmacaoSenhaVar = input_redigite.value;
+
+        // Verificando se há algum campo em branco
+        if (
+            nomeVar == "" ||
+            emailVar == "" ||
+            senhaVar == "" ||
+            confirmacaoSenhaVar == ""
+        ) {
+            console.log("Nenhum campo preenchido")
+            return false;
+        } else {
+        
+        
+
+
+        // Enviando o valor da nova input
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                nomeServer: nomeVar,
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            }),
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
+
+                if (resposta.ok) {
+                   
+                    console.log("Cadastro feito")
+
+                    window.location = "login.html";
+                } else {
+                    throw "Houve um erro ao tentar realizar o cadastro!";
+                }
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+
+        return false;
+        }
+    }
+</script>
