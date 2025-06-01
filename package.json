@@ -1,7 +1,7 @@
 {
   "name": "web-data-viz",
   "version": "1.0.0",
-  "description": "",
+  "description": "<img src=\"https://user-images.githubusercontent.com/46379117/192358781-9ca879e4-e55e-4d0d-b876-f9a4a2ed9ae8.png\" width=\"600px\">",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
@@ -10,11 +10,23 @@
   "author": "Feito pelos desenvolvedores @ São Paulo Tech School / Bandtec Digital School",
   "license": "MIT",
   "dependencies": {
+    "chart.js": "^4.4.9",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
-    "express": "^4.17.1",
-    "mysql2": "^3.9.4",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.14.1",
     "nodemon": "^2.0.7",
     "path": "^0.12.7"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NicollyRibeiroc/Olymp.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/NicollyRibeiroc/Olymp/issues"
+  },
+  "homepage": "https://github.com/NicollyRibeiroc/Olymp#readme"
 }
