@@ -9,13 +9,11 @@
 </head>
 
 <body>
-    <!-- NAVBAR -->
+ <!-- NAVBAR -->
     <header class="navbar">
-
         <div class="navbar-container">
-
             <div class="logo">
-                <img src="./img/OlympLogotipo.svg" alt="Logo Olymp">
+                <img src="./img/OlympLogotipo.svg" alt="Logo Olymp" />
             </div>
 
             <div class="menu-list">
@@ -23,13 +21,13 @@
                     <li><a href="./index.html">Ínicio</a></li>
                     <li><a href="./recomendacoes.html">Recomendações</a></li>
                     <li><a href="./contos.html">Contos</a></li>
-
+                    <!-- Links visíveis só para usuário logado -->
+                    <li id="linkQuizzes" style="display: none;"><a href="./quiz.html">Quizzes</a></li>
+                    <li id="linkDashboard" style="display: none;"><a href="./dashboard.html">Dashboard</a></li>
                 </ol>
-
             </div>
 
-            <div class="nav-button">
-
+            <div class="nav-button" id="navButtons">
                 <button>
                     <a href="./login.html">Login</a>
                 </button>
@@ -37,11 +35,8 @@
                 <button>
                     <a href="./cadastro.html"> Cadastre-se</a>
                 </button>
-
             </div>
-
         </div>
-
     </header>
 
     <div class="banner">
@@ -93,6 +88,34 @@
         Assim, Apolo foi desprezado por Dafne, que contrariada por suas constantes investidas, pediu para seu pai que a
         transformasse em um loureiro.
 
-</body>
+        <script>
+             function verificarLogin() {
+            const usuarioLogado = sessionStorage.getItem("EMAIL_USUARIO");
 
+            if (usuarioLogado) {
+                document.getElementById("linkQuizzes").style.display = "block";
+                document.getElementById("linkDashboard").style.display = "block";
+
+                const navButtons = document.getElementById("navButtons");
+                navButtons.innerHTML = `<button onclick="logout()">Logout</button>`;
+            } else {
+                document.getElementById("linkQuizzes").style.display = "none";
+                document.getElementById("linkDashboard").style.display = "none";
+
+                const navButtons = document.getElementById("navButtons");
+                navButtons.innerHTML = `
+            <button><a href="./login.html">Login</a></button>
+            <button><a href="./cadastro.html">Cadastre-se</a></button>
+        `;
+            }
+        }
+
+        function logout() {
+            sessionStorage.clear(); // limpa sessionStorage
+            location.reload();
+        }
+
+        window.onload = verificarLogin;
+        </script>
+</body>
 </html>
