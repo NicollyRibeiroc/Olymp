@@ -1,175 +1,197 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Nível Fácil | Olymp</title>
-    <link rel="stylesheet" href="css/quizzes.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quiz Nível Fácil | Olymp</title>
+  <link rel="stylesheet" href="css/quizzes.css" />
 </head>
 <body>
 
-    <div class="quiz-wrapper">
+  <div class="quiz-wrapper">
     <div class="quiz-container">
-        <div id="quiz">
-            <h1>Quiz de Conhecimento</h1>
-            <div class="pergunta-container">
-                <h2 id="pergunta">Pergunta aqui</h2>
-                <ul>
-                    <li><button class="botao-resposta">Resposta 1</button></li>
-                    <li><button class="botao-resposta">Resposta 2</button></li>
-                    <li><button class="botao-resposta">Resposta 3</button></li>
-                    <li><button class="botao-resposta">Resposta 4</button></li>
-                </ul>
-            </div>
-            <button id="botao-proximo" class="botao" style="display: none;">Próxima Pergunta</button>
-            <div id="resultado" style="display: none;">
-                <h2>Seu resultado: <span id="pontuacao"></span></h2>
-                <button id="botao-recomecar" class="botao" style="margin-top: 10px;">Recomeçar</button>
-            </div>
+      <div id="quiz">
+        <h1>Quiz de Conhecimento</h1>
+        <div class="pergunta-container">
+          <h2 id="pergunta">Pergunta aqui</h2>
+          <ul>
+            <li><button class="botao-resposta">Resposta 1</button></li>
+            <li><button class="botao-resposta">Resposta 2</button></li>
+            <li><button class="botao-resposta">Resposta 3</button></li>
+            <li><button class="botao-resposta">Resposta 4</button></li>
+          </ul>
         </div>
+        <button id="botao-proximo" class="botao" style="display: none;">Próxima Pergunta</button>
+        <div id="resultado" style="display: none;">
+          <h2>Seu resultado: <span id="pontuacao"></span></h2>
+          <button id="botao-recomecar" class="botao" style="margin-top: 10px;">Recomeçar</button>
+        </div>
+      </div>
     </div>
-    </div>
+  </div>
 
-    <script>
-        const perguntas = [
-            {
-                pergunta: "Quem era o deus do trovão na mitologia grega?",
-                respostas: ["Hades", "Ares", "Zeus", "Apolo"],
-                correta: "Zeus"
-            },
-            {
-                pergunta: "Qual era a deusa do amor e da beleza?",
-                respostas: ["Atena", "Ártemis", "Hera", "Afrodite"],
-                correta: "Afrodite"
-            },
-            {
-                pergunta: "Quem era o deus dos mares?",
-                respostas: ["Hermes", "Poseidon", "Dionísio", "Cronos"],
-                correta: "Poseidon"
-            },
-            {
-                pergunta: "Qual era o nome do cavalo alado da mitologia grega?",
-                respostas: ["Minotauro", "Grifo", "Pégaso", "Centauro"],
-                correta: "Pégaso"
-            },
-            {
-                pergunta: "Quem era o deus mensageiro, conhecido por suas sandálias aladas?",
-                respostas: ["Hermes", "Apolo", "Dionísio", "Hefesto"],
-                correta: "Hermes"
-            },
-            {
-                pergunta: "Onde os deuses do Olimpo viviam?",
-                respostas: ["Monte Etna", "Monte Olimpo", "Monte Parnaso", "Monte Atlas"],
-                correta: "Monte Olimpo"
-            },
-            {
-                pergunta: "Quem era a deusa da sabedoria e da guerra estratégica?",
-                respostas: ["Deméter", "Atena", "Hera", "Afrodite"],
-                correta: "Atena"
-            },
-            {
-                pergunta: "Qual criatura tinha cabeça de touro e corpo de homem?",
-                respostas: ["Quimera", "Minotauro", "Cérbero", "Centauro"],
-                correta: "Minotauro"
-            }
-        ];
+<script>
+  const perguntas = [
+    {
+      pergunta: "Quem era o deus do trovão na mitologia grega?",
+      respostas: ["Hades", "Ares", "Zeus", "Apolo"],
+      correta: "Zeus"
+    },
+    {
+      pergunta: "Qual era a deusa do amor e da beleza?",
+      respostas: ["Atena", "Ártemis", "Hera", "Afrodite"],
+      correta: "Afrodite"
+    },
+    {
+      pergunta: "Quem era o deus dos mares?",
+      respostas: ["Hermes", "Poseidon", "Dionísio", "Cronos"],
+      correta: "Poseidon"
+    },
+    {
+      pergunta: "Qual era o nome do cavalo alado da mitologia grega?",
+      respostas: ["Minotauro", "Grifo", "Pégaso", "Centauro"],
+      correta: "Pégaso"
+    },
+    {
+      pergunta: "Quem era o deus mensageiro, conhecido por suas sandálias aladas?",
+      respostas: ["Hermes", "Apolo", "Dionísio", "Hefesto"],
+      correta: "Hermes"
+    },
+    {
+      pergunta: "Onde os deuses do Olimpo viviam?",
+      respostas: ["Monte Etna", "Monte Olimpo", "Monte Parnaso", "Monte Atlas"],
+      correta: "Monte Olimpo"
+    },
+    {
+      pergunta: "Quem era a deusa da sabedoria e da guerra estratégica?",
+      respostas: ["Deméter", "Atena", "Hera", "Afrodite"],
+      correta: "Atena"
+    },
+    {
+      pergunta: "Qual criatura tinha cabeça de touro e corpo de homem?",
+      respostas: ["Quimera", "Minotauro", "Cérbero", "Centauro"],
+      correta: "Minotauro"
+    }
+  ];
 
-        let indicePerguntaAtual = 0;
-        let pontuacao = 0;
+  let indicePerguntaAtual = 0;
+  let pontuacao = 0;
 
-        const elementoPergunta = document.getElementById("pergunta");
-        const botoesResposta = document.querySelectorAll(".botao-resposta");
-        const botaoProximo = document.getElementById("botao-proximo");
-        const containerResultado = document.getElementById("resultado");
-        const elementoPontuacao = document.getElementById("pontuacao");
+  const elementoPergunta = document.getElementById("pergunta");
+  let botoesResposta = document.querySelectorAll(".botao-resposta");
+  const botaoProximo = document.getElementById("botao-proximo");
+  const containerResultado = document.getElementById("resultado");
+  const elementoPontuacao = document.getElementById("pontuacao");
+  const botaoRecomecar = document.getElementById("botao-recomecar");
 
-        function iniciarQuiz() {
-            indicePerguntaAtual = 0;
-            pontuacao = 0;
-            botaoProximo.style.display = "none";
-            containerResultado.style.display = "none";
-            exibirPergunta();
-        }
+  function iniciarQuiz() {
+    indicePerguntaAtual = 0;
+    pontuacao = 0;
+    botaoProximo.style.display = "none";
+    containerResultado.style.display = "none";
+    exibirPergunta();
+  }
 
-        function exibirPergunta() {
-            resetarEstado();
-            const perguntaAtual = perguntas[indicePerguntaAtual];
-            elementoPergunta.innerText = perguntaAtual.pergunta;
+  function exibirPergunta() {
+    resetarEstado();
+    const perguntaAtual = perguntas[indicePerguntaAtual];
+    elementoPergunta.innerText = perguntaAtual.pergunta;
 
-            botoesResposta.forEach((botao, index) => {
-                botao.innerText = perguntaAtual.respostas[index];
-                botao.addEventListener("click", selecionarResposta);
-            });
-        }
+    // Atualiza os botões clonando para remover listeners antigos
+    botoesResposta.forEach((botao, index) => {
+      const novoBotao = botao.cloneNode(true);
+      novoBotao.innerText = perguntaAtual.respostas[index];
+      botao.parentNode.replaceChild(novoBotao, botao);
+    });
 
-        function resetarEstado() {
-            botaoProximo.style.display = "none";
-            botoesResposta.forEach(botao => {
-                botao.disabled = false;
-                botao.classList.remove("correto", "incorreto");
-            });
-        }
+    // Atualiza a lista para os novos botões clonados
+    botoesResposta = document.querySelectorAll(".botao-resposta");
 
-        function selecionarResposta(e) {
-            const botaoSelecionado = e.target;
-            const respostaCorreta = botaoSelecionado.innerText === perguntas[indicePerguntaAtual].correta;
+    // Adiciona listener aos botões
+    botoesResposta.forEach(botao => {
+      botao.addEventListener("click", selecionarResposta);
+    });
+  }
 
-            if (respostaCorreta) {
-                botaoSelecionado.classList.add("correto");
-                pontuacao++;
-            } else {
-                botaoSelecionado.classList.add("incorreto");
-            }
+  function resetarEstado() {
+    botaoProximo.style.display = "none";
+    botoesResposta.forEach(botao => {
+      botao.disabled = false;
+      botao.classList.remove("correto", "incorreto");
+    });
+  }
 
-            botoesResposta.forEach(botao => botao.disabled = true);
+  function selecionarResposta(e) {
+    const botaoSelecionado = e.target;
+    const respostaCorreta = perguntas[indicePerguntaAtual].correta;
 
-            botaoProximo.style.display = "block";
-        }
+    // Marca o botão selecionado como correto ou incorreto
+    if (botaoSelecionado.innerText === respostaCorreta) {
+      botaoSelecionado.classList.add("correto");
+      pontuacao++;
+    } else {
+      botaoSelecionado.classList.add("incorreto");
+    }
 
-        function exibirResultado() {
-            containerResultado.style.display = "block";
-            elementoPontuacao.innerText = `${pontuacao} de ${perguntas.length}`;
+    // Marca o botão correto para feedback visual
+    botoesResposta.forEach(botao => {
+      if (botao.innerText === respostaCorreta) {
+        botao.classList.add("correto");
+      }
+      botao.disabled = true;
+    });
 
-            // Enviar resultado para o back-end
-            const dadosDesempenho = {
-                idUsuario: 1, 
-                idQuiz: 1, 
-                total_perguntas: perguntas.length,
-                acertos: pontuacao,
-                percentual: ((pontuacao / perguntas.length) * 100).toFixed(2)
-            };
+    botaoProximo.style.display = "block";
+  }
 
-            fetch("http://localhost:3000/salvarDesempenho", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(dadosDesempenho)
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log("Dados salvos com sucesso:", data);
-            })
-            .catch(error => {
-                console.error("Erro ao salvar desempenho:", error);
-            });
-        }
+  function exibirResultado() {
+    containerResultado.style.display = "block";
+    elementoPontuacao.innerText = `${pontuacao} de ${perguntas.length}`;
 
-        botaoProximo.addEventListener("click", () => {
-            indicePerguntaAtual++;
-            if (indicePerguntaAtual < perguntas.length) {
-                exibirPergunta();
-            } else {
-                exibirResultado();
-            }
-        });
+    const idUsuario = sessionStorage.getItem('ID_USUARIO') || localStorage.getItem('ID_USUARIO');
 
-        const botaoRecomecar = document.getElementById("botao-recomecar");
-        botaoRecomecar.addEventListener("click", () => {
-            iniciarQuiz();
-        });
+    if (!idUsuario) {
+      console.warn('Usuário não logado. Resultado não será enviado.');
+      return;
+    }
 
-        iniciarQuiz();
-    </script>
+    const dadosDesempenho = {
+      idUsuario: idUsuario,
+      idQuiz: 1,
+      total_perguntas: perguntas.length,
+      acertos: pontuacao,
+      percentual: ((pontuacao / perguntas.length) * 100).toFixed(2)
+    };
+
+    fetch("http://localhost:3000/salvarDesempenho", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(dadosDesempenho)
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log("Dados salvos com sucesso:", data);
+    })
+    .catch(error => {
+      console.error("Erro ao salvar desempenho:", error);
+    });
+  }
+
+  botaoProximo.addEventListener("click", () => {
+    indicePerguntaAtual++;
+    if (indicePerguntaAtual < perguntas.length) {
+      exibirPergunta();
+    } else {
+      exibirResultado();
+    }
+  });
+
+  botaoRecomecar.addEventListener("click", iniciarQuiz);
+
+  iniciarQuiz();
+</script>
+
 </body>
 </html>

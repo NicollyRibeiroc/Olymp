@@ -1,186 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Nível Fácil | Olymp</title>
-    <link rel="stylesheet" href="css/quizzes.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Quiz Nível Díficil | Olymp</title>
+    <link rel="stylesheet" href="css/quizzes.css" />
 </head>
 <body>
-
     <div class="quiz-wrapper">
-    <div class="quiz-container">
-        <div id="quiz">
-            <h1>Quiz de Conhecimento</h1>
-            <div class="pergunta-container">
-                <h2 id="pergunta">Pergunta aqui</h2>
-                <ul>
-                    <li><button class="botao-resposta">Resposta 1</button></li>
-                    <li><button class="botao-resposta">Resposta 2</button></li>
-                    <li><button class="botao-resposta">Resposta 3</button></li>
-                    <li><button class="botao-resposta">Resposta 4</button></li>
-                </ul>
-            </div>
-            <button id="botao-proximo" class="botao" style="display: none;">Próxima Pergunta</button>
-            <div id="resultado" style="display: none;">
-                <h2>Seu resultado: <span id="pontuacao"></span></h2>
-                <button id="botao-recomecar" class="botao" style="margin-top: 10px;">Recomeçar</button>
+        <div class="quiz-container">
+            <div id="quiz">
+                <h1>Quiz de Conhecimento</h1>
+                <div class="pergunta-container">
+                    <h2 id="pergunta">Pergunta aqui</h2>
+                    <ul>
+                        <li><button class="botao-resposta">Resposta 1</button></li>
+                        <li><button class="botao-resposta">Resposta 2</button></li>
+                        <li><button class="botao-resposta">Resposta 3</button></li>
+                        <li><button class="botao-resposta">Resposta 4</button></li>
+                    </ul>
+                </div>
+                <button id="botao-proximo" class="botao" style="display: none;">Próxima Pergunta</button>
+                <div id="resultado" style="display: none;">
+                    <h2>Seu resultado: <span id="pontuacao"></span></h2>
+                    <button id="botao-recomecar" class="botao" style="margin-top: 10px;">Recomeçar</button>
+                </div>
             </div>
         </div>
     </div>
-    </div>
 
-    <script>
-        const perguntas = [
-        {
-            pergunta: "Qual entidade primordial personificava a noite na mitologia grega?",
-            respostas: ["Érebo", "Nix", "Hemera", "Hipnos"],
-            correta: "Nix"
-        },
-        {
-            pergunta: "Quem foi o titã que criou a humanidade com barro segundo algumas versões do mito?",
-            respostas: ["Prometeu", "Epimeteu", "Cronos", "Iapeto"],
-            correta: "Prometeu"
-        },
-        {
-            pergunta: "Qual o nome da ninfa que foi transformada em planta após ser rejeitada por Apolo?",
-            respostas: ["Eco", "Dafne", "Calisto", "Eurídice"],
-            correta: "Dafne"
-        },
-        {
-            pergunta: "Quantos trabalhos originalmente foram designados a Héracles (Hércules)?",
-            respostas: ["Doze", "Dez", "Oito", "Quatorze"],
-            correta: "Dez"
-        },
-        {
-            pergunta: "Na mitologia, quem foi a mãe do Minotauro?",
-            respostas: ["Pasífae", "Ariadne", "Fedra", "Europa"],
-            correta: "Pasífae"
-        },
-        {
-            pergunta: "Qual mortal foi transformado em cervo por Ártemis e devorado por seus próprios cães?",
-            respostas: ["Actéon", "Orfeu", "Pentêu", "Hipólito"],
-            correta: "Actéon"
-        },
-        {
-            pergunta: "Qual era o verdadeiro nome do oráculo de Delfos?",
-            respostas: ["Sibila", "Pítia", "Calante", "Fêmis"],
-            correta: "Pítia"
-        },
-        {
-            pergunta: "Qual divindade representava o juramento e a fidelidade e punia perjúrios?",
-            respostas: ["Nêmesis", "Têmis", "Estige", "Dice"],
-            correta: "Estige"
-        },
-        {
-            pergunta: "Quem foi o pai de Andrômeda, sacrificada ao monstro marinho?",
-            respostas: ["Cefeu", "Cadmo", "Laomedonte", "Acrisios"],
-            correta: "Cefeu"
-        },
-        {
-            pergunta: "Na Titanomaquia, quem ajudou Zeus fornecendo a ele o raio como arma?",
-            respostas: ["Ciclopes", "Hecatônquiros", "Têmis", "Cronos"],
-            correta: "Ciclopes"
-        }
-    ];
+<script>
 
+  const perguntas = [
+    {
+      pergunta: "Qual entidade primordial personificava a noite na mitologia grega?",
+      respostas: ["Érebo", "Nix", "Hemera", "Hipnos"],
+      correta: "Nix"
+    },
+    {
+      pergunta: "Quem foi o titã que criou a humanidade com barro segundo algumas versões do mito?",
+      respostas: ["Prometeu", "Epimeteu", "Cronos", "Iapeto"],
+      correta: "Prometeu"
+    },
+    {
+      pergunta: "Qual o nome da ninfa que foi transformada em planta após ser rejeitada por Apolo?",
+      respostas: ["Eco", "Dafne", "Calisto", "Eurídice"],
+      correta: "Dafne"
+    },
+    {
+      pergunta: "Quantos trabalhos originalmente foram designados a Héracles (Hércules)?",
+      respostas: ["Doze", "Dez", "Oito", "Quatorze"],
+      correta: "Dez"
+    },
+    {
+      pergunta: "Na mitologia, quem foi a mãe do Minotauro?",
+      respostas: ["Pasífae", "Ariadne", "Fedra", "Europa"],
+      correta: "Pasífae"
+    },
+    {
+      pergunta: "Qual mortal foi transformado em cervo por Ártemis e devorado por seus próprios cães?",
+      respostas: ["Actéon", "Orfeu", "Pentêu", "Hipólito"],
+      correta: "Actéon"
+    },
+    {
+      pergunta: "Qual era o verdadeiro nome do oráculo de Delfos?",
+      respostas: ["Sibila", "Pítia", "Calante", "Fêmis"],
+      correta: "Pítia"
+    },
+    {
+      pergunta: "Qual divindade representava o juramento e a fidelidade e punia perjúrios?",
+      respostas: ["Nêmesis", "Têmis", "Estige", "Dice"],
+      correta: "Estige"
+    },
+    {
+      pergunta: "Quem foi o pai de Andrômeda, sacrificada ao monstro marinho?",
+      respostas: ["Cefeu", "Cadmo", "Laomedonte", "Acrisios"],
+      correta: "Cefeu"
+    },
+    {
+      pergunta: "Na Titanomaquia, quem ajudou Zeus fornecendo a ele o raio como arma?",
+      respostas: ["Ciclopes", "Hecatônquiros", "Têmis", "Cronos"],
+      correta: "Ciclopes"
+    }
+  ];
 
-        let indicePerguntaAtual = 0;
-        let pontuacao = 0;
+  let indicePerguntaAtual = 0;
+  let pontuacao = 0;
 
-        const elementoPergunta = document.getElementById("pergunta");
-        const botoesResposta = document.querySelectorAll(".botao-resposta");
-        const botaoProximo = document.getElementById("botao-proximo");
-        const containerResultado = document.getElementById("resultado");
-        const elementoPontuacao = document.getElementById("pontuacao");
+  const elementoPergunta = document.getElementById("pergunta");
+  let botoesResposta = document.querySelectorAll(".botao-resposta");
+  const botaoProximo = document.getElementById("botao-proximo");
+  const containerResultado = document.getElementById("resultado");
+  const elementoPontuacao = document.getElementById("pontuacao");
 
-        function iniciarQuiz() {
-            indicePerguntaAtual = 0;
-            pontuacao = 0;
-            botaoProximo.style.display = "none";
-            containerResultado.style.display = "none";
-            exibirPergunta();
-        }
+  function iniciarQuiz() {
+    indicePerguntaAtual = 0;
+    pontuacao = 0;
+    botaoProximo.style.display = "none";
+    containerResultado.style.display = "none";
+    exibirPergunta();
+  }
 
-        function exibirPergunta() {
-            resetarEstado();
-            const perguntaAtual = perguntas[indicePerguntaAtual];
-            elementoPergunta.innerText = perguntaAtual.pergunta;
+  function exibirPergunta() {
+    resetarEstado();
+    const perguntaAtual = perguntas[indicePerguntaAtual];
+    elementoPergunta.innerText = perguntaAtual.pergunta;
 
-            botoesResposta.forEach((botao, index) => {
-                botao.innerText = perguntaAtual.respostas[index];
-                botao.addEventListener("click", selecionarResposta);
-            });
-        }
+    // Atualiza texto e substitui botões para evitar múltiplos eventos
+    botoesResposta.forEach((botao, index) => {
+      botao.innerText = perguntaAtual.respostas[index];
+      const novoBotao = botao.cloneNode(true);
+      botao.parentNode.replaceChild(novoBotao, botao);
+    });
 
-        function resetarEstado() {
-            botaoProximo.style.display = "none";
-            botoesResposta.forEach(botao => {
-                botao.disabled = false;
-                botao.classList.remove("correto", "incorreto");
-            });
-        }
+    // Atualiza seleção dos botões depois do replaceChild
+    botoesResposta = document.querySelectorAll(".botao-resposta");
+    botoesResposta.forEach(botao => {
+      botao.disabled = false;
+      botao.classList.remove("correto", "incorreto");
+      botao.addEventListener("click", selecionarResposta);
+    });
 
-        function selecionarResposta(e) {
-            const botaoSelecionado = e.target;
-            const respostaCorreta = botaoSelecionado.innerText === perguntas[indicePerguntaAtual].correta;
+    botaoProximo.style.display = "none";
+  }
 
-            if (respostaCorreta) {
-                botaoSelecionado.classList.add("correto");
-                pontuacao++;
-            } else {
-                botaoSelecionado.classList.add("incorreto");
-            }
+  function resetarEstado() {
+    botaoProximo.style.display = "none";
+    botoesResposta.forEach(botao => {
+      botao.disabled = false;
+      botao.classList.remove("correto", "incorreto");
+    });
+  }
 
-            botoesResposta.forEach(botao => botao.disabled = true);
+  function selecionarResposta(e) {
+    const botaoSelecionado = e.target;
+    const respostaCorreta = botaoSelecionado.innerText === perguntas[indicePerguntaAtual].correta;
 
-            botaoProximo.style.display = "block";
-        }
+    if (respostaCorreta) {
+      botaoSelecionado.classList.add("correto");
+      pontuacao++;
+    } else {
+      botaoSelecionado.classList.add("incorreto");
+    }
 
-        function exibirResultado() {
-            containerResultado.style.display = "block";
-            elementoPontuacao.innerText = `${pontuacao} de ${perguntas.length}`;
+    botoesResposta.forEach(botao => botao.disabled = true);
 
-            // Enviar resultado para o back-end
-            const dadosDesempenho = {
-                idUsuario: 1, 
-                idQuiz: 3,   
-                total_perguntas: perguntas.length,
-                acertos: pontuacao,
-                percentual: ((pontuacao / perguntas.length) * 100).toFixed(2)
-            };
+    botaoProximo.style.display = "block";
+  }
 
-            fetch("http://localhost:3000/salvarDesempenho", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(dadosDesempenho)
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log("Dados salvos com sucesso:", data);
-            })
-            .catch(error => {
-                console.error("Erro ao salvar desempenho:", error);
-            });
-        }
+  function exibirResultado() {
+    containerResultado.style.display = "block";
+    elementoPontuacao.innerText = `${pontuacao} de ${perguntas.length}`;
 
-        botaoProximo.addEventListener("click", () => {
-            indicePerguntaAtual++;
-            if (indicePerguntaAtual < perguntas.length) {
-                exibirPergunta();
-            } else {
-                exibirResultado();
-            }
-        });
+    // Enviar resultado para backend com id do usuário logado
+    const dadosDesempenho = {
+      idUsuario: usuario.id,
+      idQuiz: 3,  // id do quiz difícil
+      total_perguntas: perguntas.length,
+      acertos: pontuacao,
+      percentual: ((pontuacao / perguntas.length) * 100).toFixed(2)
+    };
 
-        const botaoRecomecar = document.getElementById("botao-recomecar");
-        botaoRecomecar.addEventListener("click", () => {
-            iniciarQuiz();
-        });
+    fetch("http://localhost:3000/salvarDesempenho", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(dadosDesempenho)
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log("Dados salvos com sucesso:", data);
+    })
+    .catch(err => {
+      console.error("Erro ao salvar desempenho:", err);
+    });
+  }
 
-        iniciarQuiz();
-    </script>
+  botaoProximo.addEventListener("click", () => {
+    indicePerguntaAtual++;
+    if (indicePerguntaAtual < perguntas.length) {
+      exibirPergunta();
+    } else {
+      exibirResultado();
+    }
+  });
+
+  const botaoRecomecar = document.getElementById("botao-recomecar");
+  botaoRecomecar.addEventListener("click", iniciarQuiz);
+
+  iniciarQuiz();
+</script>
 </body>
 </html>

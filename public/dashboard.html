@@ -1,436 +1,213 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Dashboard | Olymp</title>
 
-    <link rel="stylesheet" href="style.css" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard | Olymp</title>
+  <link rel="stylesheet" href="./css/dashboards.css">
+</head>
 
-    <style>
+<body>
+  <aside class="sidebar">
+    <div class="user-name" id="userName">Olá, @</div>
+    <nav>
+      <a href="./index.html">Home</a>
+      <a href="./quizzes.html">Quizzes</a>
+    </nav>
+  </aside>
 
-      body {
-        background-color: rgb(235, 222, 200);
-        padding: 15px;
-        font-family: 'Poppins', sans-serif;
-        margin: 0; 
-        display: flex;
-      }
-
-      .sidebar {
-        position: fixed;
-        left: 0;
-        top: 0;
-        height: 100vh;
-        width: 250px;
-        background-color: rgb(132, 119, 99); 
-        color: rgb(255, 255, 255);
-        display: flex;
-        flex-direction: column;
-        padding: 20px;
-        box-sizing: border-box;
-        box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
-      }
-
-      .sidebar .user-name {
-        font-size: 22px;
-        font-weight: 700;
-        margin-bottom: 40px;
-      }
-
-      .sidebar nav a {
-        color: rgb(255, 255, 255);
-        text-decoration: none;
-        font-weight: 600;
-        margin-bottom: 20px;
-        font-size: 18px;
-        display: block;
-        padding: 10px 15px;
-        border-radius: 8px;
-        transition: background-color 0.3s ease;
-      }
-
-      .sidebar nav a:hover {
-        background-color: #3c362b;
-      }
-
-      .content {
-        margin-left: 250px;
-        padding: 15px;
-        flex-grow: 1;
-        width: calc(100% - 250px);
-        box-sizing: border-box;
-      }
-
-      .kpis-container {
-        display: flex;
-        justify-content: center;
-        gap: 30px;
-        margin-bottom: 40px;
-        flex-wrap: wrap;
-      }
-
-      .kpi {
-        background-color: white;
-        padding: 20px 30px;
-        border-radius: 12px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        min-width: 150px;
-        text-align: center;
-        font-weight: 700;
-        font-size: 18px;
-        color: #333;
-      }
-
-      .kpi .value {
-        font-size: 28px;
-        color: #4caf50; 
-        margin-top: 5px;
-      }
-
-      .kpi-title {
-        font-weight: 600;
-        font-size: 16px;
-        color: #444444;
-        margin-bottom: 6px;
-      }
-
-      .kpi-subtitle {
-        margin-top:5px;
-        font-weight: 500;
-        font-size: 13px;
-        color: #666666;  
-        margin-bottom: 8px;
-      }
-
-      .main-container {
-        display: flex;
-        justify-content: center;
-        gap: 40px;
-        flex-wrap: nowrap; 
-        margin-top: 0;
-      }
-
-      .container {
-        position: relative;
-        padding: 20px;
-        background-color: white;
-        border-radius: 12px;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-        max-width: 800px;
-        width: 70%;
-        box-sizing: border-box;
-      }
-
-      canvas {
-        border: 1px solid grey;
-        background-color: white;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        border-radius: 10px;
-        transition: transform 0.3s ease;
-        max-width: 800px;
-        max-height: 400px;
-      }
-
-      canvas:hover {
-        transform: scale(1.02);
-      }
-
-      .ranking {
-        background-color: white;
-        border-radius: 12px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        padding: 20px;
-        max-height: fit-content;
-        width: 250px;
-        font-family: 'Poppins', sans-serif;
-        box-sizing: border-box;
-      }
-
-      .ranking h3 {
-        text-align: center;
-        margin-top: 0;
-        font-size: 20px;
-      }
-
-      .ranking ol {
-        padding-left: 20px;
-      }
-
-      .ranking li {
-        margin-bottom: 10px;
-        font-weight: bold;
-        font-size: 16px;
-      }
-
-      @media (max-width: 900px) {
-        body {
-          display: block; 
-        }
-        .sidebar {
-          position: relative;
-          width: 100%;
-          height: auto;
-          box-shadow: none;
-          padding: 15px 20px;
-        }
-        .content {
-          margin-left: 0;
-          width: 100%;
-          padding: 15px 0;
-        }
-        .main-container {
-          flex-direction: column;
-          flex-wrap: wrap;
-          align-items: center;
-        }
-        .container,
-        .ranking {
-          width: 90%;
-          max-width: none;
-          margin-bottom: 20px;
-        }
-        canvas {
-          width: 100% !important;
-          height: auto !important;
-        }
-        .kpis-container {
-          justify-content: center;
-          gap: 20px;
-        }
-        .kpi {
-          min-width: 120px;
-          font-size: 16px;
-        }
-        .kpi .value {
-          font-size: 22px;
-        }
-      }
-    </style>
-  </head>
-
-  <body>
-
-    <aside class="sidebar">
-      <div class="user-name">Olá, @</div>
-      <nav>
-        <a href="./index.html">Home</a>
-        <a href="./quiz.html">Quizzes</a>
-      </nav>
-    </aside>
-
-    <div class="content">
-      <div class="kpis-container">
-        <div class="kpi">
-          Taxa Quiz Fácil
-          <div class="value" id="kpi-facil" style="color:#4caf50;">90%</div>
-          <div class="kpi-subtitle">Desempenho no nível Fácil</div>
-        </div>
-        <div class="kpi">
-          Taxa Quiz Médio
-          <div class="value" id="kpi-medio" style="color:#ffc107;">60%</div>
-          <div class="kpi-subtitle">Desempenho no nível Médio</div>
-        </div>
-        <div class="kpi">
-          Taxa Quiz Díficil
-          <div class="value" id="kpi-dificil" style="color:#f44336;">30%</div>
-          <div class="kpi-subtitle">Desempenho no nível Díficil</div>
-        </div>
+  <div class="content">
+    <div class="kpis-container">
+      <div class="kpi">
+        Taxa Quiz Fácil
+        <div class="value" id="kpi-facil" style="color:#4caf50;">90%</div>
+        <div class="kpi-subtitle">Desempenho no nível Fácil</div>
       </div>
-
-      <div class="main-container">
-        <div class="container">
-          <canvas id="myChart"></canvas>
-        </div>
-
-        <div id="ranking">
-          <div class="ranking">
-            <h3>🏆 Ranking dos Jogadores</h3>
-            <ol id="ranking-list">
-              
-            </ol>
-          </div>
-        </div>
+      <div class="kpi">
+        Taxa Quiz Médio
+        <div class="value" id="kpi-medio" style="color:#ffc107;">60%</div>
+        <div class="kpi-subtitle">Desempenho no nível Médio</div>
+      </div>
+      <div class="kpi">
+        Taxa Quiz Díficil
+        <div class="value" id="kpi-dificil" style="color:#f44336;">30%</div>
+        <div class="kpi-subtitle">Desempenho no nível Díficil</div>
       </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <div class="main-container">
+      <div class="container">
+        <canvas id="myChart"></canvas>
+      </div>
 
-    <script>
-      let chart; 
+      <div id="ranking">
+        <div class="ranking">
+          <h3>🏆 Ranking dos Jogadores</h3>
+          <ol id="ranking-list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
 
-      async function carregarDesempenho() {
-        try {
-          const resposta = await fetch('http://localhost:3001/api/desempenho');
-          const dados = await resposta.json();
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-          // Atualiza os valores das KPIs
-          function calcularTaxa(acertos, erros) {
+  <script>
+    // só entra se estiver logado
+    if (!sessionStorage.ID_USUARIO) {
+      alert("Você precisa estar logado para acessar a Dashboard.");
+      window.location.href = "login.html";
+    } else {
+      // Atualiza nome do usuário
+      const nomeUsuario = sessionStorage.NOME_USUARIO || "@";
+      document.getElementById("userName").textContent = "Olá, " + nomeUsuario;
+    }
+
+    let chart;
+
+    async function carregarDesempenho() {
+      try {
+        const resposta = await fetch('http://localhost:3001/api/desempenho');
+        const dados = await resposta.json();
+
+        function calcularTaxa(acertos, erros) {
           acertos = Number(acertos);
           erros = Number(erros);
           const tentativas = acertos + erros;
           if (tentativas === 0) return '0.00%';
-            return ((acertos / tentativas) * 100).toFixed(2) + '%';
-          }
-
-          // Atualizando os KPIs:
-          document.getElementById('kpi-facil').textContent = calcularTaxa(dados.facil.acertos, dados.facil.erros);
-          document.getElementById('kpi-medio').textContent = calcularTaxa(dados.medio.acertos, dados.medio.erros);
-          document.getElementById('kpi-dificil').textContent = calcularTaxa(dados.dificil.acertos, dados.dificil.erros);
-
-
-
-          const ctx = document.getElementById('myChart').getContext('2d');
-
-          // Se já existir gráfico, destrói antes de criar novo
-          if (chart) {
-            chart.destroy();
-          }
-
-          chart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-              labels: ['Fácil', 'Médio', 'Díficil'],
-              datasets: [
-                {
-                  label: 'Quantidade de Acertos',
-                  data: [
-                    dados.facil.acertos || 0,
-                    dados.medio.acertos || 0,
-                    dados.dificil.acertos || 0,
-                  ],
-                  backgroundColor: 'rgba(76, 175, 80, 0.7)',
-                  borderWidth: 1,
-                  borderColor: 'rgb(76, 175, 80)',
-                },
-                {
-                  label: 'Quantidade de Erros',
-                  data: [
-                    dados.facil.erros || 0,
-                    dados.medio.erros || 0,
-                    dados.dificil.erros || 0,
-                  ],
-                  backgroundColor: 'rgba(244, 67, 54, 0.7)',
-                  borderWidth: 1,
-                  borderColor: 'rgb(244, 67, 54)',
-                },
-                {
-                  label: 'Tentativas Totais',
-                  data: [
-                    dados.facil.tentativas || 0,
-                    dados.medio.tentativas || 0,
-                    dados.dificil.tentativas || 0,
-                  ],
-                  backgroundColor: 'rgba(255, 193, 7, 0.7)',
-                  borderWidth: 1,
-                  borderColor: 'rgb(255, 193, 7)',
-                },
-              ],
-            },
-            options: {
-              animation: {
-                duration: 2000,
-                easing: 'easeOutBounce',
-              },
-              layout: {
-                padding: {
-                  left: 20,
-                  right: 20,
-                  top: 20,
-                  bottom: 50,
-                },
-              },
-              plugins: {
-                legend: {
-                  display: true,
-                  position: 'bottom',
-                },
-                title: {
-                  display: true,
-                  text: 'Desempenho dos Jogadores por Dificuldade',
-                  font: {
-                    size: 30,
-                    weight: 'bold',
-                    family: 'Arial',
-                  },
-                  color: 'black',
-                },
-                tooltip: {
-                  enabled: true,
-                  backgroundColor: 'rgb(0,0,0)',
-                },
-              },
-              scales: {
-                y: {
-                  beginAtZero: true,
-                  grid: {
-                    display: false,
-                  },
-                  ticks: {
-                    color: 'black',
-                    font: {
-                      size: 14,
-                      weight: 'bold',
-                    },
-                  },
-                },
-                x: {
-                  ticks: {
-                    color: 'black',
-                    font: {
-                      size: 14,
-                      weight: 'bold',
-                    },
-                  },
-                },
-              },
-            },
-          });
-        } catch (error) {
-          console.error('Erro ao carregar desempenho:', error);
+          return ((acertos / tentativas) * 100).toFixed(2) + '%';
         }
+
+        document.getElementById('kpi-facil').textContent = calcularTaxa(dados.facil.acertos, dados.facil.erros);
+        document.getElementById('kpi-medio').textContent = calcularTaxa(dados.medio.acertos, dados.medio.erros);
+        document.getElementById('kpi-dificil').textContent = calcularTaxa(dados.dificil.acertos, dados.dificil.erros);
+
+        const ctx = document.getElementById('myChart').getContext('2d');
+        if (chart) chart.destroy();
+
+        chart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: ['Fácil', 'Médio', 'Díficil'],
+            datasets: [
+              {
+                label: 'Quantidade de Acertos',
+                data: [dados.facil.acertos, dados.medio.acertos, dados.dificil.acertos],
+                backgroundColor: 'rgba(76, 175, 80, 0.7)',
+                borderWidth: 1,
+                borderColor: 'rgb(76, 175, 80)',
+              },
+              {
+                label: 'Quantidade de Erros',
+                data: [dados.facil.erros, dados.medio.erros, dados.dificil.erros],
+                backgroundColor: 'rgba(244, 67, 54, 0.7)',
+                borderWidth: 1,
+                borderColor: 'rgb(244, 67, 54)',
+              },
+              {
+                label: 'Tentativas Totais',
+                data: [dados.facil.tentativas, dados.medio.tentativas, dados.dificil.tentativas],
+                backgroundColor: 'rgba(255, 193, 7, 0.7)',
+                borderWidth: 1,
+                borderColor: 'rgb(255, 193, 7)',
+              },
+            ],
+          },
+          options: {
+            animation: {
+              duration: 2000,
+              easing: 'easeOutBounce',
+            },
+            layout: {
+              padding: {
+                left: 20,
+                right: 20,
+                top: 20,
+                bottom: 50,
+              },
+            },
+            plugins: {
+              legend: {
+                display: true,
+                position: 'bottom',
+              },
+              title: {
+                display: true,
+                text: 'Desempenho dos Jogadores por Dificuldade',
+                font: {
+                  size: 30,
+                  weight: 'bold',
+                  family: 'Arial',
+                },
+                color: 'black',
+              },
+              tooltip: {
+                enabled: true,
+                backgroundColor: 'rgb(0,0,0)',
+              },
+            },
+            scales: {
+              y: {
+                beginAtZero: true,
+                grid: { display: false },
+                ticks: {
+                  color: 'black',
+                  font: { size: 14, weight: 'bold' },
+                },
+              },
+              x: {
+                ticks: {
+                  color: 'black',
+                  font: { size: 14, weight: 'bold' },
+                },
+              },
+            },
+          },
+        });
+      } catch (error) {
+        console.error('Erro ao carregar desempenho:', error);
       }
+    }
 
-      async function carregarRanking() {
-        try {
-          const resposta = await fetch('http://localhost:3001/api/ranking');
-          const dados = await resposta.json();
+    async function carregarRanking() {
+      try {
+        const resposta = await fetch('http://localhost:3001/api/ranking');
+        const dados = await resposta.json();
 
+        const lista = document.getElementById('ranking-list');
+        lista.innerHTML = '';
+
+        dados.forEach((item, index) => {
+          const li = document.createElement('li');
+          li.innerText = `${index + 1}º ${item.nome} — ${item.pontuacao}%`;
+          lista.appendChild(li);
+        });
+      } catch (erro) {
+        console.error('Erro ao carregar ranking:', erro);
+      }
+    }
+
+    function atualizarRanking() {
+      fetch('http://localhost:3001/api/ranking')
+        .then((res) => res.json())
+        .then((dados) => {
           const lista = document.getElementById('ranking-list');
           lista.innerHTML = '';
-
           dados.forEach((item, index) => {
             const li = document.createElement('li');
             li.innerText = `${index + 1}º ${item.nome} — ${item.pontuacao}%`;
             lista.appendChild(li);
           });
-        } catch (erro) {
-          console.error('Erro ao carregar ranking:', erro);
-        }
-      }
+        })
+        .catch((erro) => console.error('Erro ao atualizar ranking:', erro));
+    }
 
-      function atualizarRanking() {
-        fetch('http://localhost:3001/api/ranking')
-          .then((res) => res.json())
-          .then((dados) => {
-            const lista = document.getElementById('ranking-list');
-            lista.innerHTML = '';
-            dados.forEach((item, index) => {
-              const li = document.createElement('li');
-              li.innerText = `${index + 1}º ${item.nome} — ${item.pontuacao}%`;
-              lista.appendChild(li);
-            });
-          })
-          .catch((erro) => console.error('Erro ao atualizar ranking:', erro));
-      }
+    window.onload = async () => {
+      await carregarDesempenho();
+      await carregarRanking();
+      setInterval(atualizarRanking, 10000);
+    };
+  </script>
+</body>
 
-      window.onload = async () => {
-        await carregarDesempenho();
-        await carregarRanking();
-
-        // Atualizar ranking a cada 10 segundos
-        setInterval(atualizarRanking, 10000);
-      };
-    </script>
-  </body>
 </html>

@@ -2,21 +2,19 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Olymp | Home</title>
-    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/index.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 
 <body>
     <!-- NAVBAR -->
     <header class="navbar">
-
         <div class="navbar-container">
-
             <div class="logo">
-                <img src="./img/OlympLogotipo.svg" alt="Logo Olymp">
+                <img src="./img/OlympLogotipo.svg" alt="Logo Olymp" />
             </div>
 
             <div class="menu-list">
@@ -24,13 +22,13 @@
                     <li><a href="./index.html">Ínicio</a></li>
                     <li><a href="./recomendacoes.html">Recomendações</a></li>
                     <li><a href="./contos.html">Contos</a></li>
-
+                    <!-- Links visíveis só para usuário logado -->
+                    <li id="linkQuizzes" style="display: none;"><a href="./quiz.html">Quizzes</a></li>
+                    <li id="linkDashboard" style="display: none;"><a href="./dashboard.html">Dashboard</a></li>
                 </ol>
-
             </div>
 
-            <div class="nav-button">
-
+            <div class="nav-button" id="navButtons">
                 <button>
                     <a href="./login.html">Login</a>
                 </button>
@@ -38,42 +36,31 @@
                 <button>
                     <a href="./cadastro.html"> Cadastre-se</a>
                 </button>
-
             </div>
-
         </div>
-
     </header>
 
     <!-- INÍCIO COM VÍDEO -->
     <section class="home">
-
         <video autoplay muted loop class="home-video">
-            <source src="./img/bannerprincipal.mp4" type="video/mp4">
+            <source src="./img/bannerprincipal.mp4" type="video/mp4" />
         </video>
-        </div>
-
     </section>
 
     <!-- Texto Principal -->
 
     <div class="frase">
-
         <p>“Os mitos são coisas que nunca aconteceram, mas que sempre existiram.”</p>
-
         <p>— Salústio, filósofo neoplatônico do século IV d.C.</p>
-
     </div>
 
     <div class="textoprincipal">
-        <div class="deusa"> <img src="./img/deusa.png" alt="img">  </div>
-        <div class="titulotextop">
-              <br> Olimpo e Além
+        <div class="deusa">
+            <img src="./img/deusa.png" alt="img" />
         </div>
+        <div class="titulotextop"><br /> Olimpo e Além</div>
 
-        <div class="subtitulotextop">
-            A Jornada da Mitologia Grega
-        </div>
+        <div class="subtitulotextop">A Jornada da Mitologia Grega</div>
 
         <div class="conteudotextop">
             <p>
@@ -103,14 +90,43 @@
                 medos, paixões e sonhos.
             </p>
         </div>
-       
     </div>
 
-    <div class="sobremim">
-    </div>
+    <div class="sobremim"></div>
 
-    <div class="footer">
+    <div class="footer"></div>
 
-    </div>
+    <script>
 
-    
+        function verificarLogin() {
+            const usuarioLogado = sessionStorage.getItem("EMAIL_USUARIO"); 
+
+            if (usuarioLogado) {
+                document.getElementById("linkQuizzes").style.display = "block";
+                document.getElementById("linkDashboard").style.display = "block";
+
+                const navButtons = document.getElementById("navButtons");
+                navButtons.innerHTML = `<button onclick="logout()">Logout</button>`;
+            } else {
+                document.getElementById("linkQuizzes").style.display = "none";
+                document.getElementById("linkDashboard").style.display = "none";
+
+                const navButtons = document.getElementById("navButtons");
+                navButtons.innerHTML = `
+            <button><a href="./login.html">Login</a></button>
+            <button><a href="./cadastro.html">Cadastre-se</a></button>
+        `;
+            }
+        }
+
+        function logout() {
+            sessionStorage.clear(); // limpa sessionStorage
+            location.reload();
+        }
+
+        window.onload = verificarLogin;
+    </script>
+
+</body>
+
+</html>

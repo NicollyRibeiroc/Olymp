@@ -1,90 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quiz Nível Fácil | Olymp</title>
-    <link rel="stylesheet" href="css/quizzes.css">
+    <link rel="stylesheet" href="css/quizzes.css" />
 </head>
+
 <body>
 
     <div class="quiz-wrapper">
-    <div class="quiz-container">
-        <div id="quiz">
-            <h1>Quiz de Conhecimento</h1>
-            <div class="pergunta-container">
-                <h2 id="pergunta">Pergunta aqui</h2>
-                <ul>
-                    <li><button class="botao-resposta">Resposta 1</button></li>
-                    <li><button class="botao-resposta">Resposta 2</button></li>
-                    <li><button class="botao-resposta">Resposta 3</button></li>
-                    <li><button class="botao-resposta">Resposta 4</button></li>
-                </ul>
-            </div>
-            <button id="botao-proximo" class="botao" style="display: none;">Próxima Pergunta</button>
-            <div id="resultado" style="display: none;">
-                <h2>Seu resultado: <span id="pontuacao"></span></h2>
-                <button id="botao-recomecar" class="botao" style="margin-top: 10px;">Recomeçar</button>
+        <div class="quiz-container">
+            <div id="quiz">
+                <h1>Quiz de Conhecimento</h1>
+                <div class="pergunta-container">
+                    <h2 id="pergunta">Pergunta aqui</h2>
+                    <ul>
+                        <li><button class="botao-resposta">Resposta 1</button></li>
+                        <li><button class="botao-resposta">Resposta 2</button></li>
+                        <li><button class="botao-resposta">Resposta 3</button></li>
+                        <li><button class="botao-resposta">Resposta 4</button></li>
+                    </ul>
+                </div>
+                <button id="botao-proximo" class="botao" style="display: none;">Próxima Pergunta</button>
+                <div id="resultado" style="display: none;">
+                    <h2>Seu resultado: <span id="pontuacao"></span></h2>
+                    <button id="botao-recomecar" class="botao" style="margin-top: 10px;">Recomeçar</button>
+                </div>
             </div>
         </div>
     </div>
-    </div>
 
     <script>
-       const perguntas = [
-    {
-        pergunta: "Quem era o rei dos deuses na mitologia grega?",
-        respostas: ["Apolo", "Poseidon", "Zeus", "Hades"],
-        correta: "Zeus"
-    },
-    {
-        pergunta: "Qual deusa nasceu da espuma do mar?",
-        respostas: ["Ártemis", "Afrodite", "Deméter", "Hera"],
-        correta: "Afrodite"
-    },
-    {
-        pergunta: "Qual deus era responsável pelo submundo?",
-        respostas:  ["Zeus", "Hades", "Hermes", "Ares"],
-        correta: "Hades"
-    },
 
-    {
-        pergunta: "Quem era o mensageiro dos deuses?",
-        respostas: ["Hermes", "Apolo", "Dionísio", "Ares"],
-        correta: "Hermes"
-    },
-    {
-        pergunta: "Qual deus era associado ao vinho e festas?",
-        respostas: ["Dionísio", "Ares", "Hefesto", "Poseidon"],
-        correta: "Dionísio"
-    },
-    {
-        pergunta: "Quem era a deusa da sabedoria?",
-        respostas: ["Hera", "Deméter", "Afrodite", "Atena"],
-        correta: "Atena"
-    },
-    {
-        pergunta: "Quem era o deus dos mares?",
-        respostas: ["Zeus", "Hades", "Poseidon", "Apolo"],
-        correta: "Poseidon"
-    },
-    {
-        pergunta: "Quem foi punido a segurar o céu nos ombros?",
-        respostas: ["Prometeu", "Atlas", "Cronos", "Orfeu"],
-        correta: "Atlas"
-    },
-    {
-        pergunta: "Quem matou a Medusa?",
-        respostas: ["Teseu", "Hércules", "Perseu", "Aquiles"],
-        correta: "Perseu"
-    },
-    {
-        pergunta: "Qual herói era invulnerável, exceto no calcanhar?",
-        respostas: ["Aquiles", "Hércules", "Ulisses", "Teseu"],
-        correta: "Aquiles"
-    }
-];
-
+        const perguntas = [
+            { pergunta: "Quem era o rei dos deuses na mitologia grega?", respostas: ["Apolo", "Poseidon", "Zeus", "Hades"], correta: "Zeus" },
+            { pergunta: "Qual deusa nasceu da espuma do mar?", respostas: ["Ártemis", "Afrodite", "Deméter", "Hera"], correta: "Afrodite" },
+            { pergunta: "Qual deus era responsável pelo submundo?", respostas: ["Zeus", "Hades", "Hermes", "Ares"], correta: "Hades" },
+            { pergunta: "Quem era o mensageiro dos deuses?", respostas: ["Hermes", "Apolo", "Dionísio", "Ares"], correta: "Hermes" },
+            { pergunta: "Qual deus era associado ao vinho e festas?", respostas: ["Dionísio", "Ares", "Hefesto", "Poseidon"], correta: "Dionísio" },
+            { pergunta: "Quem era a deusa da sabedoria?", respostas: ["Hera", "Deméter", "Afrodite", "Atena"], correta: "Atena" },
+            { pergunta: "Quem era o deus dos mares?", respostas: ["Zeus", "Hades", "Poseidon", "Apolo"], correta: "Poseidon" },
+            { pergunta: "Quem foi punido a segurar o céu nos ombros?", respostas: ["Prometeu", "Atlas", "Cronos", "Orfeu"], correta: "Atlas" },
+            { pergunta: "Quem matou a Medusa?", respostas: ["Teseu", "Hércules", "Perseu", "Aquiles"], correta: "Perseu" },
+            { pergunta: "Qual herói era invulnerável, exceto no calcanhar?", respostas: ["Aquiles", "Hércules", "Ulisses", "Teseu"], correta: "Aquiles" }
+        ];
 
         let indicePerguntaAtual = 0;
         let pontuacao = 0;
@@ -110,7 +71,7 @@
 
             botoesResposta.forEach((botao, index) => {
                 botao.innerText = perguntaAtual.respostas[index];
-                botao.addEventListener("click", selecionarResposta);
+                botao.onclick = selecionarResposta;
             });
         }
 
@@ -134,7 +95,6 @@
             }
 
             botoesResposta.forEach(botao => botao.disabled = true);
-
             botaoProximo.style.display = "block";
         }
 
@@ -142,10 +102,10 @@
             containerResultado.style.display = "block";
             elementoPontuacao.innerText = `${pontuacao} de ${perguntas.length}`;
 
-            // Enviar resultado para o back-end
+            // Enviar para o backend com o ID do usuário logado
             const dadosDesempenho = {
-                idUsuario: 1, 
-                idQuiz: 2,    
+                idUsuario: usuario.id,
+                idQuiz: 2, //Identificador do quiz médio
                 total_perguntas: perguntas.length,
                 acertos: pontuacao,
                 percentual: ((pontuacao / perguntas.length) * 100).toFixed(2)
@@ -153,18 +113,12 @@
 
             fetch("http://localhost:3000/salvarDesempenho", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(dadosDesempenho)
             })
-            .then(response => response.json())
-            .then(data => {
-                console.log("Dados salvos com sucesso:", data);
-            })
-            .catch(error => {
-                console.error("Erro ao salvar desempenho:", error);
-            });
+                .then(res => res.json())
+                .then(data => console.log("Desempenho salvo com sucesso:", data))
+                .catch(erro => console.error("Erro ao salvar desempenho:", erro));
         }
 
         botaoProximo.addEventListener("click", () => {
@@ -176,12 +130,10 @@
             }
         });
 
-        const botaoRecomecar = document.getElementById("botao-recomecar");
-        botaoRecomecar.addEventListener("click", () => {
-            iniciarQuiz();
-        });
+        document.getElementById("botao-recomecar").addEventListener("click", iniciarQuiz);
 
         iniciarQuiz();
+
     </script>
-</body>
-</html>
+</body >
+</html >

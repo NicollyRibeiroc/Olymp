@@ -1,15 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
-    <script src="scripts/login.js"></script>
     <link rel="stylesheet" href="./css/login.css" />
-  
-
-    <title>Login</title>
+    <title>Login | Olymp</title>
 </head>
 
 <body>
@@ -17,75 +14,92 @@
         <div class="bloco_foto">
             <div class="bloco_login">
                 <h1 class="login">Login</h1>
+
                 <input id="input_email" class="input" placeholder="E-mail" type="text" />
                 <input id="input_senha" class="input" placeholder="Senha" type="password" />
                 <button class="botao" onclick="entrar()">Login</button>
-                <h4>Não é cadastrado? Clique <a href="cadastro.html">aqui</a> para se cadastrar</h4>
 
+                <!-- Div onde vou mostrar mensagens de erro para o usuário -->
+                <div id="cardErro" style="display:none; color:red; margin-top:10px;"></div>
+
+                <h4>Não é cadastrado? Clique <a href="cadastro.html">aqui</a> para se cadastrar</h4>
             </div>
         </div>
     </div>
+
+    <script>
+        // Função que executa quando o usuário clica no botão de login
+        function entrar() {
+            // Pego o valor digitado no campo email e tiro espaços extras
+            var emailVar = document.getElementById("input_email").value.trim();
+            // Pego o valor digitado no campo senha e tiro espaços extras
+            var senhaVar = document.getElementById("input_senha").value.trim();
+            // Pego o elemento onde vou mostrar a mensagem de erro
+            var cardErro = document.getElementById("cardErro");
+
+            // Antes de tudo, escondo qualquer mensagem de erro que estivesse aparecendo
+            cardErro.style.display = "none";
+            cardErro.innerHTML = "";
+
+            // Verifico se algum dos campos está vazio
+            if (emailVar === "" || senhaVar === "") {
+                // Se estiverem vazios, mostro a mensagem de erro para o usuário
+                cardErro.style.display = "block";
+                cardErro.innerHTML = "Por favor, preencha todos os campos!";
+                // Saio da função para não continuar o processo de login
+                return false;
+            }
+
+            // Mostro no console o email e senha que o usuário digitou (pra ajudar a debugar)
+            console.log("FORM LOGIN: ", emailVar);
+            console.log("FORM SENHA: ", senhaVar);
+
+            // Faço uma requisição POST para o backend, enviando email e senha para autenticação
+            fetch("/usuarios/autenticar", {
+                method: "POST", // método POST para enviar dados
+                headers: {
+                    "Content-Type": "application/json" // meu conteúdo é JSON
+                },
+                body: JSON.stringify({
+                    emailServer: emailVar, // mando o email no corpo da requisição
+                    senhaServer: senhaVar   // mando a senha no corpo da requisição
+                })
+            }).then(function (resposta) {
+                // Se o backend responder que deu certo (status 200)
+                if (resposta.ok) {
+                    // Converto a resposta em JSON para pegar os dados do usuário
+                    resposta.json().then(json => {
+                        console.log("Usuário autenticado:", json);
+
+                        // Salvo as informações do usuário no sessionStorage para manter sessão ativa
+                        sessionStorage.setItem('EMAIL_USUARIO', json.email);
+                        sessionStorage.setItem('NOME_USUARIO', json.nome);
+                        sessionStorage.setItem('ID_USUARIO', json.idUsuario);
+
+                        // Depois redireciono o usuário para a página principal (index.html)
+                        window.location.href = "index.html";
+                    });
+                } else {
+                    // Se deu erro no login, pego o texto do erro que o backend enviou
+                    resposta.text().then(texto => {
+                        // Mostro essa mensagem de erro na tela para o usuário
+                        cardErro.style.display = "block";
+                        cardErro.innerHTML = texto || "Email ou senha inválidos!";
+                        // Também mostro no console para eu poder corrigir se precisar
+                        console.error("Erro no login:", texto);
+                    });
+                }
+            }).catch(function (erro) {
+                // Caso dê algum problema na conexão com o backend, mostro essa mensagem
+                cardErro.style.display = "block";
+                cardErro.innerHTML = "Erro ao conectar com o servidor.";
+                console.error("Erro de conexão:", erro);
+            });
+
+            // Evito que o formulário seja enviado da forma tradicional (recarregando a página)
+            return false;
+        }
+    </script>
 </body>
 
 </html>
-<script>
-
-
-    function entrar() {
-
-
-        var emailVar = input_email.value;
-        var senhaVar = input_senha.value;
-
-        if (emailVar == "" || senhaVar == "") {
-            cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
-            return false;
-        }
-        else {
-
-        console.log("FORM LOGIN: ", emailVar);
-        console.log("FORM SENHA: ", senhaVar);
-
-        fetch("/usuarios/autenticar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                emailServer: emailVar,
-                senhaServer: senhaVar
-            })
-        }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO entrar()!")
-
-            if (resposta.ok) {
-                console.log(resposta);
-
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-                    sessionStorage.EMAIL_USUARIO = json.email;
-                    sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.idUsuario;
-
-                        window.location = "index.html";
-                });
-
-            } else {
-
-                console.log("Houve um erro ao tentar realizar o login!");
-
-                resposta.text().then(texto => {
-                    console.error(texto);
-                });
-            }
-
-        }).catch(function (erro) {
-            console.log(erro);
-        })
-
-        return false;
-    }}
-
-</script>
