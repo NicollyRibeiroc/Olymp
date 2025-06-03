@@ -1,163 +1,231 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap'); 
-/* Aqui eu importo a fonte 'Poppins' do Google Fonts com pesos 400 e 500 para aplicar no site. */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+
+:root {
+  --preto: #1a1a1a;
+  --bege: #a38d63;
+  --branco-transparente: rgba(255, 255, 255, 0.623);
+  --marrom-escuro: #533f24;
+  --hover-branco: rgba(255, 255, 255, 0.795);
+  --card-bg: #1a1a1a;
+  --card-hover: #2b2b2b;
+}
 
 * {
-    padding: 0;                /* Removo o espaçamento interno padrão de todos os elementos. */
-    margin: 0;                 /* Removo o espaçamento externo padrão de todos os elementos. */
-    box-sizing: border-box;   /* Faço com que o padding e border sejam incluídos no tamanho total dos elementos. */
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: 'Poppins', serif;                   /* Aplico a fonte 'Poppins' no corpo da página. */
-    overflow-x: hidden;                              /* Impede a rolagem horizontal caso o conteúdo extrapole a largura. */
-    background-color: rgba(255, 255, 255, 0.623);     /* Defino uma cor de fundo branca com transparência. */
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
+  background-color: #fae6b4d0;
+  position: relative;
+  z-index: 1;
+  color: var(--preto);
+  animation: fadeIn 0.8s ease-in;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(../img/nuvens.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  opacity: 0.3;
+  z-index: -1;
 }
 
 .container {
-    width: 90%;           /* Defino que o container ocupará 90% da largura da tela. */
-    margin: 0 auto;       /* Centralizo o container horizontalmente. */
+  width: 90%;
+  margin: 0 auto;
 }
 
 /* NAVBAR */
 .navbar {
-    background-color: rgba(163, 141, 99, 0.5);        /* Defino uma cor de fundo com transparência para a navbar. */
-    height: 4.5rem;                                   /* Defino a altura da navbar. */
-    display: flex;                                    /* Utilizo flexbox para alinhar os itens da navbar. */
-    align-items: center;                              /* Alinho verticalmente os itens ao centro. */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);          /* Adiciono uma sombra para dar profundidade. */
-    position: fixed;                                  /* Deixo a navbar fixa no topo da página. */
-    justify-content: space-between;                   /* Espaço entre os elementos da navbar. */
-    top: 0;                                            /* Posiciono no topo da página. */
-    width: 100%;                                       /* Ocupa 100% da largura da tela. */
-    z-index: 10;                                       /* Garante que fique acima de outros elementos. */
-    padding: 0 5%;                                     /* Espaçamento interno nas laterais. */
+  background-color: rgba(163, 141, 99, 0.5);
+  height: 4.5rem;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  position: fixed;
+  justify-content: space-between;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+  padding: 0 5%;
 }
 
 .navbar-container {
-    display: flex;                /* Crio um layout flexível para os itens da navbar. */
-    flex-direction: row;          /* Organizo os itens na horizontal. */
-    justify-content: space-between;  /* Espaço entre os elementos. */
-    align-items: center;             /* Centralizo verticalmente. */
-    width: 100%;                     /* Ocupa toda a largura da navbar. */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 .logo img {
-    margin-top: 10px;     /* Espaço acima da logo. */
-    height: 150px;        /* Altura da imagem da logo. */
+  margin-top: 10px;
+  height: 120px;
+  animation: fadeIn 1s ease;
 }
 
 .menu-list .nav-list {
-    margin-left: 15.5%;        /* Espaço à esquerda da lista de navegação (inicial). */
-    list-style: none;          /* Remove os marcadores da lista. */
-    display: flex;             /* Exibe os itens da lista em linha. */
-    align-items: center;       /* Centraliza verticalmente os itens. */
-    gap: 2.5rem;               /* Espaçamento entre os itens. */
-    margin-left: 100px;        /* Substituição do margin-left para alinhar com o conteúdo. */
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  margin-left: 100px;
 }
 
 .menu-list .nav-list li a {
-    font-weight: 300;                /* Peso da fonte mais leve. */
-    text-decoration: none;          /* Remove o sublinhado dos links. */
-    color: white;                   /* Define a cor do texto como branco. */
-    font-size: 1.1rem;              /* Tamanho da fonte. */
-    transition: color 0.3s;         /* Transição suave na mudança de cor. */
+  font-weight: 400;
+  text-decoration: none;
+  color: white;
+  font-size: 1.1rem;
+  transition: color 0.3s;
 }
 
 .menu-list .nav-list li a:hover {
-    color: #533f24;   /* Cor marrom escura quando o mouse passa por cima. */
+  color: var(--marrom-escuro);
 }
 
 .nav-button button {
-    margin-left: 1rem;                        /* Espaço à esquerda do botão. */
-    padding: 0.5rem 1rem;                     /* Espaçamento interno do botão. */
-    font-size: 1rem;                          /* Tamanho da fonte do botão. */
-    background-color: rgba(0, 0, 0, 0.1);     /* Fundo com leve transparência. */
-    border-radius: 5px;                       /* Cantos arredondados. */
-    cursor: pointer;                          /* Cursor vira uma mãozinha. */
-    border: 1px solid white;                  /* Borda branca fina. */
-}
-
-.nav-button button a {
-    text-decoration: none;     /* Tiro o sublinhado do link dentro do botão. */
-    color: white;              /* Cor branca no texto do botão. */
+  margin-left: 1rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  cursor: pointer;
+  border: 1px solid white;
+  color: white;
+  transition: background-color 0.3s;
 }
 
 .nav-button button:hover {
-    background-color: rgba(255, 255, 255, 0.795);   /* Fundo quase branco no hover. */
-    transition: background-color 0.3s;              /* Transição suave de cor. */
+  background-color: var(--hover-branco);
+}
+
+.nav-button button a {
+  text-decoration: none;
+  color: inherit;
 }
 
 .nav-button button a:hover {
-    color: rgb(83, 62, 34);   /* Cor do texto muda no hover para marrom escuro. */
+  color: var(--marrom-escuro);
 }
 
+h1 {
+  font-size: 28px;
+  margin-bottom: 10px;
+  animation: fadeInUp 0.8s ease;
+}
 
- h1 {
-     font-size: 28px;
-     margin-bottom: 10px;
- }
+.titulo {
+  text-align: center;
+  margin-top: 60px;
+  padding: 15px;
+  font-size: 36px;
+  color: var(--preto);
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  animation: fadeInUp 1s ease;
+}
 
- .titulo {
-     text-align: center;
-     margin-top: 40px;
-     padding: 15px;
-     font-size: 36px;
-     color: var(--preto);
-     margin-bottom: 10px;
-     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+.intro {
+  font-size: 18px;
+  color: var(--preto);
+  max-width: 600px;
+  margin: 0 auto 40px;
+  line-height: 1.6;
+  text-align: center;
+  animation: fadeInUp 1.2s ease;
+}
 
- }
+.Cards {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 40px 20px;
+}
 
- .intro {
-     font-size: 18px;
-     color: var(--preto);
-     max-width: 600px;
-     margin: 0 auto 40px;
-     line-height: 1.6;
-     text-align: center;
- }
+.card {
+  border: 2px solid var(--bege);
+  border-radius: 18px;
+  padding: 20px;
+  width: 200px;
+  text-align: center;
+  background-color: white;
+  box-shadow: 0 12px 14px rgba(100, 43, 43, 0.1);
+  cursor: pointer;
+  transition: transform 0.5s ease, box-shadow 0.5s ease, background-color 0.5s;
+  color: #524638;
+  animation: fadeInUp 1s ease;
+}
 
- .Cards {
-     display: flex;
-     gap: 20px;
-     justify-content: center;
-     flex-wrap: wrap;
-     
- }
+.card:hover {
+  transform: translateY(-10px) scale(1.04);
+  box-shadow: 0 14px 28px rgb(78, 76, 65);
+  background-color: rgb(241, 230, 191);
+}
 
- .card {
-     border: 2px solid var(--bege);
-     border-radius: 8px;
-     padding: 10px;
-     width: 200px;
-     text-align: center;
-     background-color: var(--preto);
-     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-     cursor: pointer;
-     transition: transform 0.3s ease, box-shadow 0.3s ease;
-     color: #fff;
- }
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 14px;
+  margin-bottom: 14px;
+  transition: transform 0.4s ease;
+}
 
- .card:hover {
-     transform: translateY(-8px) scale(1.02);
-     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
- }
+.card:hover img {
+  transform: scale(1.05);
+}
 
- .card img {
-     width: 100%;
-     height: 250px;
-     object-fit: cover;
-     border-radius: 6px;
- }
+.card h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
 
- .conteudo {
-    text-align: center;
-    padding: 60px;
-    margin-left: 30px;
-    margin-right: 30px;
+.card p {
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.conteudo {
+  text-align: center;
+  padding: 60px 30px;
+  animation: fadeIn 1.4s ease;
 }
 
 a {
-    text-decoration: none; 
-    color: inherit;         
+  text-decoration: none;
+  color: inherit;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

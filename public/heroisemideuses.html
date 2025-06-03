@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Heróis e Semideuses | Olymp</title>
+    <link rel="stylesheet" href="./css/heroisemideuses.css" />
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="navbar-container">
+            <div class="logo">
+                <img src="./img/OlympLogotipo.svg" alt="Logo Olymp" />
+            </div>
+
+            <div class="menu-list">
+                <ol class="nav-list">
+                    <li><a href="./index.html">Ínicio</a></li>
+                    <li><a href="./recomendacoes.html">Recomendações</a></li>
+                    <li><a href="./contos.html">Contos</a></li>
+                    <!-- Links visíveis só para usuário logado -->
+                    <li id="linkQuizzes" style="display: none;"><a href="./quiz.html">Quizzes</a></li>
+                    <li id="linkDashboard" style="display: none;"><a href="./dashboard.html">Dashboard</a></li>
+                </ol>
+            </div>
+
+            <div class="nav-button" id="navButtons">
+                <button>
+                    <a href="./login.html">Login</a>
+                </button>
+
+                <button>
+                    <a href="./cadastro.html"> Cadastre-se</a>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section>
+        <h2>Heróis e Semideuses</h2>
+        <div class="intro">
+            <p>
+                Heróis e semideuses são figuras que, segundo a mitologia grega, possuem sangue divino e humano. 
+                Eles realizaram grandes feitos e aventuras, inspirando histórias de coragem e sacrifício.
+                <br />
+                <a href="https://pt.wikipedia.org/wiki/H%C3%A9roe_na_mitologia_grega">
+                    <h5>Fonte: Wikipédia</h5>
+                </a>
+            </p>
+        </div>
+    </section>
+
+    <section>
+        <div class="heroisGrade">
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <h3>Hércules</h3>
+                    </div>
+                    <div class="card-back">
+                        <p>Filho de Zeus, famoso por sua força extraordinária e seus 12 trabalhos.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <h3>Perseu</h3>
+                    </div>
+                    <div class="card-back">
+                        <p>Matou a Medusa e salvou Andrômeda, conhecido por suas incríveis façanhas.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <h3>Ártemis</h3>
+                    </div>
+                    <div class="card-back">
+                        <p>Deusa da caça e da lua, protetora dos jovens e dos semideuses.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <h3>Aquiles</h3>
+                    </div>
+                    <div class="card-back">
+                        <p>Herói da Guerra de Troia, conhecido por sua invulnerabilidade quase total.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <h3>Atalanta</h3>
+                    </div>
+                    <div class="card-back">
+                        <p>Famosa caçadora e corredora veloz, uma das poucas heroínas nas histórias gregas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>2025 • Site criado por Nicolly Ribeiro</p>
+    </footer>
+
+    <script>
+        function verificarLogin() {
+            const usuarioLogado = sessionStorage.getItem("EMAIL_USUARIO");
+
+            if (usuarioLogado) {
+                document.getElementById("linkQuizzes").style.display = "block";
+                document.getElementById("linkDashboard").style.display = "block";
+
+                const navButtons = document.getElementById("navButtons");
+                navButtons.innerHTML = `<button onclick="logout()">Logout</button>`;
+            } else {
+                document.getElementById("linkQuizzes").style.display = "none";
+                document.getElementById("linkDashboard").style.display = "none";
+
+                const navButtons = document.getElementById("navButtons");
+                navButtons.innerHTML = `
+                    <button><a href="./login.html">Login</a></button>
+                    <button><a href="./cadastro.html">Cadastre-se</a></button>
+                `;
+            }
+        }
+
+        function logout() {
+            sessionStorage.clear();
+            location.reload();
+        }
+
+        window.onload = verificarLogin;
+    </script>
+</body>
+
+</html>

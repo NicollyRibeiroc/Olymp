@@ -10,7 +10,7 @@
 
 <body>
 
-  <!-- NAVBAR -->
+    <!-- NAVBAR -->
     <header class="navbar">
         <div class="navbar-container">
             <div class="logo">
@@ -40,55 +40,57 @@
         </div>
     </header>
 
-        <h1 class="titulo">Contos, Deuses, Heróis e Titãs</h1>
-        <p class="intro">
-            Mergulhe no fascinante universo da <strong>mitologia grega</strong>. Descubra os poderosos deuses que
-            governavam o Olimpo
-            e os lendários titãs que desafiaram o destino. Explore histórias épicas que atravessam os séculos!
-        </p>
+    <h1 class="titulo">Contos, Deuses, Heróis e Titãs</h1>
+    <p class="intro">
+        Mergulhe no fascinante universo da <strong>mitologia grega</strong>. Descubra os poderosos deuses que
+        governavam o Olimpo
+        e os lendários titãs que desafiaram o destino. Explore histórias épicas que atravessam os séculos!
+    </p>
 
 
-        <div class="Cards">
-            <a href="deuses.html">
+    <div class="Cards">
+        <a href="deuses.html">
             <div class="card">
-                <img src="../img/Oceanus, Greek God.jpeg" alt="Poseidon">
+                <img src="./img/deuses.jpg" alt="Poseidon">
                 <p>Deuses</p>
-            </a>
-            </div>
+        </a>
+    </div>
 
-            <a href="titas.html">
-                <div class="card">
-                <img src="../img/Cronos _ Cronus _ Kronos, Greek God.jpeg" alt="Cronos">
-                <p>Titãs</p>
-            </div>
-            </a>
-            
-
-            <div class="card">
-                <img src="../img/Gaea _ Gaia, Greek Goddess.jpeg" alt="Cronos">
-                <p>Deuses Primordiais</p>
-            </div>
-
-            <div class="card">
-                <img src="../img/aquiles.jpg" alt="Cronos">
-                <p>Heróis e Semideuses</p>
-            </div>
+    <a href="titas.html">
+        <div class="card">
+            <img src="./img/cronostitas.jpg" alt="Cronos">
+            <p>Titãs</p>
         </div>
+    </a>
+
+
+    <a href="deusesprimordiais.html">
+    <div class="card">
+        <img src="./img/Gaia.webp" alt="Gaia">
+        <p>Deuses Primordiais</p>
+    </div>
+    </a>
+
+    <a href="heroisemideuses.html">
+    <div class="card">
+        <img src="./img/hercules.jpg" alt="Hércules">
+        <p>Heróis e Semideuses</p>
+    </div>
+    </a>
+    
+    </div>
     </div>
 
     <div class="conteudo">
-        What is Lorem Ipsum?
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-        when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-        It has survived not only five centuries, but also the leap into electronic typesetting,
-        remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets
-        containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
-        PageMaker including versions of Lorem Ipsum.
-
+        Desde tempos imemoriais, a mitologia grega encantou gerações com suas histórias repletas de heróis destemidos,
+        deuses poderosos e titãs colossais. Neste espaço, você vai conhecer os personagens que moldaram o imaginário de
+        uma civilização — de Zeus, o senhor do Olimpo, a Gaia, a mãe primordial. Cada conto guarda um ensinamento, um
+        drama ou uma façanha que transcende o tempo e ainda ecoa nos dias de hoje. Prepare-se para uma jornada entre
+        mitos e lendas que continuam vivos.
     </div>
+
     <script>
-         function verificarLogin() {
+        function verificarLogin() {
             const usuarioLogado = sessionStorage.getItem("EMAIL_USUARIO");
 
             if (usuarioLogado) {
@@ -117,4 +119,5 @@
         window.onload = verificarLogin;
     </script>
 </body>
+
 </html>
