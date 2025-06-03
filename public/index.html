@@ -58,48 +58,94 @@
         <div class="deusa">
             <img src="./img/deusa.png" alt="img" />
         </div>
-        <div class="titulotextop"><br /> Olimpo e Além</div>
+        <div class="titulotextop"><br />
+            <h2>Olimpo e Além</h2>
+        </div>
 
         <div class="subtitulotextop">A Jornada da Mitologia Grega</div>
 
         <div class="conteudotextop">
-            <p>
-                A <strong>mitologia grega</strong> é um conjunto de histórias criadas na Grécia Antiga para explicar a
-                origem do mundo, os fenômenos da natureza e o comportamento humano. Essas narrativas envolvem
-                <strong>deuses poderosos</strong>, <strong>heróis lendários</strong> e <strong>criaturas
-                    mitológicas</strong> que inspiram culturas até hoje.
-            </p>
-            <p>
-                Tudo começou com o <strong>Caos primordial</strong>, seguido por divindades como <strong>Gaia</strong>
-                (Terra) e <strong>Urano</strong> (Céu). Com o tempo, surgiram os <strong>Titãs</strong> e, após uma
-                batalha cósmica, os <strong>deuses do Olimpo</strong> assumiram o poder — liderados por
-                <strong>Zeus</strong>, com figuras como <strong>Atena</strong>, <strong>Afrodite</strong> e
-                <strong>Poseidon</strong>.
-            </p>
-            <p>
-                Heróis como <strong>Hércules</strong>, <strong>Perseu</strong> e <strong>Ulisses</strong> enfrentaram
-                desafios épicos que simbolizam temas como coragem, destino e superação. Essas histórias foram
-                eternizadas por poetas como <strong>Homero</strong> e <strong>Hesíodo</strong>, e até hoje influenciam
-                livros, filmes e jogos.
-            </p>
-            <blockquote>
-                <strong>“A mitologia é a linguagem da alma.” — Joseph Campbell</strong>
-            </blockquote>
-            <p>
-                Explorar a mitologia grega é mergulhar em um universo atemporal que ainda fala sobre quem somos, nossos
-                medos, paixões e sonhos.
-            </p>
+            <section id="introducao">
+                <p>
+                    Este site é um portal para o fascinante mundo da mitologia grega. Aqui, você vai conhecer os deuses
+                    que governavam o Olimpo, os heróis cujas histórias desafiaram o tempo e os mitos que moldaram a
+                    cultura ocidental.
+                    <br><br>
+                </p>
+                <p>
+                    A <strong>mitologia grega</strong> é um conjunto de histórias criadas na Grécia Antiga para explicar
+                    a origem do mundo, os fenômenos da natureza e o comportamento humano. Essas narrativas envolvem
+                    <strong>deuses poderosos</strong>, <strong>heróis lendários</strong> e <strong>criaturas
+                        mitológicas</strong> que inspiram culturas até hoje.
+                </p>
+                <br>
+                <p>
+                    Explorar a mitologia grega é mergulhar em um universo atemporal que fala sobre quem somos, nossos
+                    medos, paixões e sonhos.
+                </p>
         </div>
     </div>
 
-    <div class="sobremim"></div>
+    <section id="curiosidades">
+        <h2>Curiosidade da Mitologia Grega</h2>
+        <p id="curiosidade-atual">Carregando curiosidade...</p>
+        <button onclick="mostrarCuriosidade()">Nova Curiosidade</button>
+    </section>
 
-    <div class="footer"></div>
+    <section class="linha-do-tempo">
+        <h2 class="linha-do-tempo__titulo">Linha do Tempo Mitológica</h2>
+        <div class="linha-do-tempo__container">
+            <div class="linha-do-tempo__evento">
+                <div class="linha-do-tempo__conteudo">
+                    <h3>Caos Primordial</h3>
+                    <p>O vazio inicial do universo, origem de tudo.</p>
+                </div>
+                <span class="linha-do-tempo__data">Início dos Tempos</span>
+            </div>
+            <div class="linha-do-tempo__evento">
+                <div class="linha-do-tempo__conteudo">
+                    <h3>Gaia e Urano</h3>
+                    <p>O surgimento da Terra (Gaia) e do Céu (Urano).</p>
+                </div>
+                <span class="linha-do-tempo__data">Antes dos Titãs</span>
+            </div>
+            <div class="linha-do-tempo__evento">
+                <div class="linha-do-tempo__conteudo">
+                    <h3>Titãs</h3>
+                    <p>Primeira geração de divindades poderosas.</p>
+                </div>
+                <span class="linha-do-tempo__data">Era dos Titãs</span>
+            </div>
+            <div class="linha-do-tempo__evento">
+                <div class="linha-do-tempo__conteudo">
+                    <h3>Batalha dos Titãs</h3>
+                    <p>Conflito cósmico que levou à ascensão dos Olimpianos.</p>
+                </div>
+                <span class="linha-do-tempo__data">Transição</span>
+            </div>
+            <div class="linha-do-tempo__evento">
+                <div class="linha-do-tempo__conteudo">
+                    <h3>Deuses do Olimpo</h3>
+                    <p>Zeus e sua geração governam o mundo.</p>
+                </div>
+                <span class="linha-do-tempo__data">Era Olímpica</span>
+            </div>
+            <div class="linha-do-tempo__evento">
+                <div class="linha-do-tempo__conteudo">
+                    <h3>Heróis Lendários</h3>
+                    <p>Hércules, Perseu, Ulisses e suas aventuras.</p>
+                </div>
+                <span class="linha-do-tempo__data">Idade dos Heróis</span>
+            </div>
+        </div>
+    </section>
+
+
 
     <script>
 
         function verificarLogin() {
-            const usuarioLogado = sessionStorage.getItem("EMAIL_USUARIO"); 
+            const usuarioLogado = sessionStorage.getItem("EMAIL_USUARIO");
 
             if (usuarioLogado) {
                 document.getElementById("linkQuizzes").style.display = "block";
@@ -125,6 +171,39 @@
         }
 
         window.onload = verificarLogin;
+
+
+
+        const curiosidades = [
+            "Atena nasceu da cabeça de Zeus, já adulta e armada.",
+            "Afrodite teria surgido da espuma do mar após o corte de Urano.",
+            "Hércules realizou doze trabalhos como punição por ter perdido o controle da mente.",
+            "O Oráculo de Delfos era considerado a boca de Apolo na Terra.",
+            "Prometeu foi punido por roubar o fogo dos deuses e entregá-lo aos humanos.",
+            "Eco era uma ninfa que perdeu a voz e só podia repetir as últimas palavras que ouvia.",
+            "Narciso se apaixonou pelo próprio reflexo e definhou olhando para si mesmo.",
+            "Cronos devorava seus próprios filhos com medo de ser destronado por eles.",
+            "O cavalo de Troia foi uma armadilha criada por Odisseu para invadir a cidade de Troia.",
+            "A Esfinge fazia enigmas mortais e foi derrotada por Édipo."
+        ];
+
+        function mostrarCuriosidade() {
+            let curiosidade = "";
+            const indexAleatorio = Math.floor(Math.random() * curiosidades.length);
+
+
+            for (let i = 0; i < curiosidades.length; i++) {
+                if (i === indexAleatorio) {
+                    curiosidade = curiosidades[i];
+                    break;
+                }
+            }
+
+            document.getElementById("curiosidade-atual").textContent = curiosidade;
+        }
+
+
+        window.onload = mostrarCuriosidade;
     </script>
 
 </body>

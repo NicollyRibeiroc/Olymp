@@ -121,18 +121,19 @@ body {
 
 .titulotextop {
     margin-left: 30px;      /* Espaço à esquerda do título. */
-    font-size: 20px;        /* Tamanho do título. */
+    font-size: 30px;        /* Tamanho do título. */
 }
 
 .subtitulotextop {
     margin-left: 30px;      /* Espaço à esquerda do subtítulo. */
-    font-size: 16px;        /* Tamanho do subtítulo. */
+    font-size: 18px;        /* Tamanho do subtítulo. */
 }
 
 .conteudotextop {
     margin-left: 30px;      /* Espaço à esquerda do conteúdo. */
     margin-top: 20px;       /* Espaço acima do conteúdo. */
-    margin-right: 70px;     /* Espaço à direita do conteúdo. */
+    margin-right: 170px; 
+    font-size: 17px;    
 }
 
 .textoprincipal {
@@ -145,13 +146,13 @@ body {
 
 .deusa {
     position: absolute;        /* Posiciona a imagem no fundo da seção. */
-    top: 0;                    /* Alinha no topo. */
-    left: 0;                   /* Alinha à esquerda. */
-    width: 100%;               /* Largura total da seção. */
-    height: 100%;              /* Altura total da seção. */
-    z-index: -1;               /* Fica atrás do conteúdo da seção. */
-    opacity: 0.7;              /* Deixa a imagem mais suave com transparência. */
-    background-color: #a18024; /* Cor base da imagem de fundo. */
+    top: 0;                    
+    left: 0;                  
+    width: 100%;              
+    height: 100%;             
+    z-index: -1;              
+    opacity: 0.7;             
+    background-color: #fff7e3; /* Cor base da imagem de fundo. */
 }
 
 .deusa img {
@@ -164,6 +165,125 @@ body {
 .subtitulotextop,
 .conteudotextop {
     margin-left: 40px;    /* Espaço à esquerda desses textos. */
-    margin-right: 370px;  /* Espaço à direita para não colar na borda. */
-    color: white;         /* Cor branca para contrastar com a imagem de fundo. */
+    margin-right: 490px;  /* Espaço à direita para não colar na borda. */
+    color: rgb(0, 0, 0);         /* Cor branca para contrastar com a imagem de fundo. */
 }
+
+#curiosidades {
+  background-color: #fdf6e3;
+  padding: 40px 20px;
+  text-align: center;
+  color: #333;
+}
+
+#curiosidades h2 {
+  margin-bottom: 20px;
+   color: #65523d;
+     margin-bottom: 20px;
+     font-weight: 400;
+}
+
+.titulotextop h2 {
+     color: #65523d;
+     margin-bottom: 20px;
+     font-size: 30px;
+     font-weight: 400;
+ }
+
+#curiosidade-atual {
+  font-size: 17px;
+  margin-bottom: 20px;
+}
+
+#curiosidades button {
+  background-color: #eecb85;
+  border: none;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+#curiosidades button:hover {
+  background-color: #594525;
+  color: white;
+}
+
+.textoprincipal {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    min-height: 500px; /* aumenta a altura mínima da seção */
+}
+
+.linha-do-tempo {
+    max-width: 1100px;
+    margin: 40px auto 60px;
+    padding: 0 20px;
+    font-family: 'Poppins', serif;
+}
+
+.linha-do-tempo h2 {
+    font-size: 28px;
+    margin-bottom: 25px;
+    border-left: 4px solid #a37d00; /* borda mais fina e cor dourada suave */
+    padding-left: 12px;
+    color: #65523d;
+    font-weight: 400;
+    margin-top: 90px; /* menor margem superior */
+}
+
+.linha-do-tempo__container {
+    position: relative;
+    padding-left: 25px; /* menos afastamento */
+    border-left: 4px solid #a37d00;
+}
+.linha-do-tempo {
+    max-width: 1100px;
+    margin: 40px auto 60px;
+    padding: 40px 20px;
+    font-family: 'Poppins', serif;
+    position: relative;
+    border-radius: 10px;
+    color: #3e3312;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.linha-do-tempo::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: url('caminho/para/sua-imagem.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.2; 
+    filter: brightness(0.7); /* deixa a imagem um pouco mais escura para o texto contrastar */
+    border-radius: 10px;
+    z-index: -1; /* fica atrás do conteúdo */
+}
+
+
+.linha-do-tempo__conteudo h3 {
+    margin: 0 0 6px 0;
+    font-weight: 500;
+    color: #7a6e4a;
+    font-size: 1.1rem;
+}
+
+.linha-do-tempo__conteudo p {
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: #3e3312;
+}
+
+.linha-do-tempo__data {
+    display: block;
+    margin-top: 4px;
+    font-style: italic;
+    font-size: 0.9rem;
+    color: #877a4b;
+}
+

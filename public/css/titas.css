@@ -164,10 +164,9 @@ section h2 {
     padding: 20px;
     flex-direction: column;
 }
-
 .card-front {
-    background-color: white;
-    color: var(--preto);
+    background: linear-gradient(135deg, #f5e7c4, #e2c89a);
+    color: black;
 }
 
 .card-back {
@@ -178,7 +177,7 @@ section h2 {
 
 .card h3 {
     margin: 0;
-    color: #7a6e4a;
+    color: #53442c;
 }
 
 .card p {
@@ -226,5 +225,3 @@ a:hover {
     color: #5f5f4f;
     text-decoration: underline;
 }
-
-
