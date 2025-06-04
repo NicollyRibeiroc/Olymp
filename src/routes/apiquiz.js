@@ -8,10 +8,10 @@ app.use(cors());
 app.use(express.json());  
 
 const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'nilo0914',  
-  database: 'Olymp'
+  host: '127.0.0.1',
+  user: 'aluno',       
+  password: 'Sptech#2024',   
+  database: 'Olymp',
 });
 
 app.post('/salvarDesempenho', (req, res) => {
