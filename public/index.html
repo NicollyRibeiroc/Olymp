@@ -170,10 +170,7 @@
             location.reload();
         }
 
-        window.onload = verificarLogin;
-
-
-
+    
         const curiosidades = [
             "Atena nasceu da cabeça de Zeus, já adulta e armada.",
             "Afrodite teria surgido da espuma do mar após o corte de Urano.",
@@ -203,7 +200,10 @@
         }
 
 
-        window.onload = mostrarCuriosidade;
+        window.onload = function () {
+        verificarLogin();
+        mostrarCuriosidade();
+    };
     </script>
 
 </body>
