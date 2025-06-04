@@ -231,7 +231,7 @@ body {
     padding-left: 12px;
     color: #65523d;
     font-weight: 400;
-    margin-top: 90px; /* menor margem superior */
+    margin-top: 0px; /* menor margem superior */
 }
 
 .linha-do-tempo__container {

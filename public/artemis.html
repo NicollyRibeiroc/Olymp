@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artemis | Olymp</title>
+    <link rel="stylesheet" href="./css/ares.css">
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="navbar-container">
+            <div class="logo">
+                <img src="./img/OlympLogotipo.svg" alt="Logo Olymp" />
+            </div>
+
+            <div class="menu-list">
+                <ol class="nav-list">
+                    <li><a href="./index.html">Ínicio</a></li>
+                    <li><a href="./recomendacoes.html">Recomendações</a></li>
+                    <li><a href="./contos.html">Contos</a></li>
+                    <!-- Links visíveis só para usuário logado -->
+                    <li id="linkQuizzes" style="display: none;"><a href="./quiz.html">Quizzes</a></li>
+                    <li id="linkDashboard" style="display: none;"><a href="./dashboard.html">Dashboard</a></li>
+                </ol>
+            </div>
+
+            <div class="nav-button" id="navButtons">
+                <button>
+                    <a href="./login.html">Login</a>
+                </button>
+
+                <button>
+                    <a href="./cadastro.html"> Cadastre-se</a>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="banner">
+        <img src="./img/artemisperfil.jpg" alt="Artemis">
+    </div>
+
+    <div class="conteudo">
+
+        <h2>Deusa Grega Artemis</h2>
+        <br>
+
+        Ártemis é a deusa da caça, da vegetação, da castidade, do parto e dos animais selvagens. É uma das mais
+        veneradas divindades da mitologia grega e, na mitologia romana, é chamada de Diana.
+
+        Considerada uma fantástica caçadora, Ártemis era cultuada por aliviar as doenças femininas, proteger as crianças
+        e os jovens.
+
+        Embora Ártemis seja muito associada à Lua, esta tinha sua própria representação divina: Selene.
+
+        Representação de Ártemis
+        Ártemis tem como símbolos o arco e a flecha, por ser a deusa da caça. Protetora dos caçadores e dos animais
+        selvagens ao mesmo tempo, ela protegia os animais jovens e indefesos.
+
+        O seu animal sagrado é o cervo, embora também esteja associada aos ursos e outros animais selvagens.
+
+        <script>
+            function verificarLogin() {
+                const usuarioLogado = sessionStorage.getItem("EMAIL_USUARIO");
+
+                if (usuarioLogado) {
+                    document.getElementById("linkQuizzes").style.display = "block";
+                    document.getElementById("linkDashboard").style.display = "block";
+
+                    const navButtons = document.getElementById("navButtons");
+                    navButtons.innerHTML = `<button onclick="logout()">Logout</button>`;
+                } else {
+                    document.getElementById("linkQuizzes").style.display = "none";
+                    document.getElementById("linkDashboard").style.display = "none";
+
+                    const navButtons = document.getElementById("navButtons");
+                    navButtons.innerHTML = `
+            <button><a href="./login.html">Login</a></button>
+            <button><a href="./cadastro.html">Cadastre-se</a></button>
+        `;
+                }
+            }
+
+            function logout() {
+                sessionStorage.clear(); // limpa sessionStorage
+                location.reload();
+            }
+
+            window.onload = verificarLogin;
+        </script>
+</body>
+
+</html>

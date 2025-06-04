@@ -115,6 +115,7 @@ h1 {
     margin-top: 150px;
 }
 
+
 .textoinicial {
     display: flex;
     justify-content: center;
@@ -187,4 +188,44 @@ button:hover {
 a {
     text-decoration: none; 
     color: inherit;         
+}
+
+/* RESPONSIVIDADE */
+
+/* Para telas menores que 768px */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column; /* empilho os itens da navbar. */
+        height: auto;           
+        padding: 1rem;          /*  aumento o espaçamento interno. */
+    }
+
+    .navbar-container {
+        flex-direction: column; /* Eu organizo os elementos em coluna. */
+        gap: 1rem;              /* Eu adiciono espaço entre os itens. */
+    }
+
+    .menu-list .nav-list {
+        flex-direction: column; /* empilho os itens da lista. */
+        gap: 1rem;              /* deixo espaço entre eles. */
+        margin-left: 0;         
+    }
+
+    .nav-button {
+        display: flex;              
+        gap: 0.8rem;                
+        flex-direction: column;     
+        width: 100%;               
+        align-items: center;        
+    }
+
+    .nav-button button {
+        width: 90%;           
+        padding: 0.7rem;      
+        font-size: 1rem;       
+    }
+
+    .logo img {
+        height: 100px;        
+    }
 }
