@@ -72,9 +72,9 @@
                         console.log("Usuário autenticado:", json);
 
                         // Salvo as informações do usuário no sessionStorage para manter sessão ativa
-                        sessionStorage.setItem('EMAIL_USUARIO', json.email);
-                        sessionStorage.setItem('NOME_USUARIO', json.nome);
-                        sessionStorage.setItem('ID_USUARIO', json.idUsuario);
+                        sessionStorage.EMAIL_USUARIO = json.email;
+                        sessionStorage.NOME_USUARIO = json.nome;
+                        sessionStorage.ID_USUARIO = json.idUsuario;
 
                         // Depois redireciono o usuário para a página principal (index.html)
                         window.location.href = "index.html";

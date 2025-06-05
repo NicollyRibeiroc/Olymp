@@ -1,4 +1,0 @@
-npm start
-node server.js
-node apiquiz.js
-node kpis.js

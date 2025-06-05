@@ -211,26 +211,31 @@
       containerResultado.style.display = "block";
       elementoPontuacao.innerText = `${pontuacao} de ${perguntas.length}`;
 
-      // Enviar resultado para backend com id do usuário logado
-      const dadosDesempenho = {
-        idUsuario: usuario.id,
-        idQuiz: 3,  // id do quiz difícil
-        total_perguntas: perguntas.length,
-        acertos: pontuacao,
-        percentual: ((pontuacao / perguntas.length) * 100).toFixed(2)
-      };
+      var idUsuario = sessionStorage.ID_USUARIO
+      var fkQuiz = 3
+      var perguntasTotal = pergunta.length
+      var percentual = ((pontuacao / perguntas.length) * 100).toFixed(2)
 
-      fetch("http://localhost:3000/salvarDesempenho", {
+      fetch("/quizdificil/cadastrar", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(dadosDesempenho)
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+                idUsuarioServer: idUsuario,
+                fkQuizServer: fkQuiz,
+                total_perguntasServer: perguntasTotal,
+                acertosServer: pontuacao,
+                percentualServer: percentual
+
+            })
       })
-        .then(res => res.json())
+        .then(response => response.json())
         .then(data => {
           console.log("Dados salvos com sucesso:", data);
         })
-        .catch(err => {
-          console.error("Erro ao salvar desempenho:", err);
+        .catch(error => {
+          console.error("Erro ao salvar desempenho:", error);
         });
     }
 

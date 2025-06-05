@@ -155,29 +155,37 @@
             botaoProximo.style.display = "block";
         }
 
-        function exibirResultado() {
-            containerResultado.style.display = "block";
-            elementoPontuacao.innerText = `${pontuacao} de ${perguntas.length}`;
+       function exibirResultado() {
+      containerResultado.style.display = "block";
+      elementoPontuacao.innerText = `${pontuacao} de ${perguntas.length}`;
 
-            // Enviar para o backend com o ID do usuário logado
-            const dadosDesempenho = {
-                idUsuario: usuario.id,
-                idQuiz: 2, //Identificador do quiz médio
-                total_perguntas: perguntas.length,
-                acertos: pontuacao,
-                percentual: ((pontuacao / perguntas.length) * 100).toFixed(2)
-            };
+      var idUsuario = sessionStorage.ID_USUARIO
+      var fkQuiz = 2
+      var perguntasTotal = pergunta.length
+      var percentual = ((pontuacao / perguntas.length) * 100).toFixed(2)
 
-            fetch("http://localhost:3000/salvarDesempenho", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(dadosDesempenho)
+      fetch("/quizmedio/cadastrar", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+                idUsuarioServer: idUsuario,
+                fkQuizServer: fkQuiz,
+                total_perguntasServer: perguntasTotal,
+                acertosServer: pontuacao,
+                percentualServer: percentual
+
             })
-                .then(res => res.json())
-                .then(data => console.log("Desempenho salvo com sucesso:", data))
-                .catch(erro => console.error("Erro ao salvar desempenho:", erro));
-        }
-
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log("Dados salvos com sucesso:", data);
+        })
+        .catch(error => {
+          console.error("Erro ao salvar desempenho:", error);
+        });
+    }
         botaoProximo.addEventListener("click", () => {
             indicePerguntaAtual++;
             if (indicePerguntaAtual < perguntas.length) {

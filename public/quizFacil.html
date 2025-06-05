@@ -207,27 +207,25 @@
       containerResultado.style.display = "block";
       elementoPontuacao.innerText = `${pontuacao} de ${perguntas.length}`;
 
-      const idUsuario = sessionStorage.getItem('ID_USUARIO') || localStorage.getItem('ID_USUARIO');
+      var idUsuario = sessionStorage.ID_USUARIO
+      var fkQuiz = 1
+      var perguntasTotal = perguntas.length
+      var percentual = ((pontuacao / perguntas.length) * 100)
+      var percentual2 = percentual.toFixed(2)
 
-      if (!idUsuario) {
-        console.warn('Usuário não logado. Resultado não será enviado.');
-        return;
-      }
-
-      const dadosDesempenho = {
-        idUsuario: idUsuario,
-        idQuiz: 1,
-        total_perguntas: perguntas.length,
-        acertos: pontuacao,
-        percentual: ((pontuacao / perguntas.length) * 100).toFixed(2)
-      };
-
-      fetch("http://localhost:3000/salvarDesempenho", {
+      fetch("/quizfacil/cadastrar", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify(dadosDesempenho)
+        body: JSON.stringify({
+                idUsuarioServer: idUsuario,
+                fkQuizServer: fkQuiz,
+                total_perguntasServer: perguntasTotal,
+                acertosServer: pontuacao,
+                percentualServer: percentual2
+
+            })
       })
         .then(response => response.json())
         .then(data => {
