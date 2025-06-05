@@ -1,29 +1,25 @@
-# 🏛️ Olymp — Plataforma Interativa de Mitologia Grega
+# 🏛️ OLYMP
 
-Bem-vindo ao **Olymp**, uma plataforma interativa desenvolvida para quem deseja aprender, explorar e se divertir com os conhecimentos sobre **Mitologia Grega**. Desafie seus conhecimentos através de quizzes, mergulhe nesse universo mitológico fascinante!
+Bem-vindo ao **Olymp**!  
+Este projeto foi desenvolvido com o objetivo de ensinar e testar conhecimentos sobre a mitologia grega, de forma divertida e interativa.
 
----
+## 📚 Descrição
 
-## 🚀 Funcionalidades
+Este projeto oferece um quizzes interativos sobre mitologia grega, contendo:
 
-- ✅ Sistema de cadastro e login de usuários
-- ✅ Quizzes sobre Mitologia Grega divididos por níveis de dificuldade (Fácil, Médio e Difícil)
-- ✅ Cadastro e acompanhamento de desempenho do usuário
+- ✅ **Quiz com múltiplas perguntas:** Descubra seu conhecimento sobre deuses, heróis e criaturas mitológicas.
+- 📊 **Dashboard de Desempenho:** Visualize seu progresso, taxa de acertos e erros, e acompanhe sua evolução.
+- 🏆 **Ranking de Jogadores:** Compare seu desempenho com outros participantes e suba no ranking!
 
----
+## 🧠 Conteúdos Abordados
+
+- Deuses e deusas do Olimpo
+- Heróis e semideuses
+- Musas
 
 ## 🛠️ Tecnologias Utilizadas
 
-### 👨‍💻 Frontend
 - HTML5
-- CSS3
+- CSS
 - JavaScript
-
-### 🌐 Backend
-- Node.js
-- Express.js
-
-### 🗄️ Banco de Dados
-- MySQL
-
----
+- [Chart.js](https://www.chartjs.org/) (para gráficos no dashboard)
