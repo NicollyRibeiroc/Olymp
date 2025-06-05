@@ -47,10 +47,10 @@
         <div class="pergunta-container">
           <h2 id="pergunta">Pergunta aqui</h2>
           <ul>
-            <li><button class="botao-resposta">Resposta 1</button></li>
-            <li><button class="botao-resposta">Resposta 2</button></li>
-            <li><button class="botao-resposta">Resposta 3</button></li>
-            <li><button class="botao-resposta">Resposta 4</button></li>
+            <li><button class="botao-resposta" tabindex="0">Resposta 1</button></li>
+            <li><button class="botao-resposta" tabindex="0">Resposta 2</button></li>
+            <li><button class="botao-resposta" tabindex="0">Resposta 3</button></li>
+            <li><button class="botao-resposta" tabindex="0">Resposta 4</button></li>
           </ul>
         </div>
         <button id="botao-proximo" class="botao" style="display: none;">Próxima Pergunta</button>
@@ -65,21 +65,18 @@
   <script>
     function verificarLogin() {
       const usuarioLogado = sessionStorage.getItem("EMAIL_USUARIO");
+      const navButtons = document.getElementById("navButtons");
 
       if (usuarioLogado) {
         document.getElementById("linkQuizzes").style.display = "block";
         document.getElementById("linkDashboard").style.display = "block";
-
-        const navButtons = document.getElementById("navButtons");
         navButtons.innerHTML = `<button onclick="logout()">Logout</button>`;
       } else {
         document.getElementById("linkQuizzes").style.display = "none";
         document.getElementById("linkDashboard").style.display = "none";
-
-        const navButtons = document.getElementById("navButtons");
         navButtons.innerHTML = `
-            <button><a href="./login.html">Login</a></button>
-            <button><a href="./cadastro.html">Cadastre-se</a></button>
+          <button><a href="./login.html">Login</a></button>
+          <button><a href="./cadastro.html">Cadastre-se</a></button>
         `;
       }
     }
@@ -90,6 +87,7 @@
     }
 
     window.onload = verificarLogin;
+
     const perguntas = [
       {
         pergunta: "Quem era o deus do trovão na mitologia grega?",
@@ -133,123 +131,104 @@
       }
     ];
 
-    let indicePerguntaAtual = 0;
-    let pontuacao = 0;
+    let indice = 0;
+    let acertos = 0;
+    let erros = 0;
 
-    const elementoPergunta = document.getElementById("pergunta");
-    let botoesResposta = document.querySelectorAll(".botao-resposta");
+    const perguntaElement = document.getElementById("pergunta");
+    const opcoesElement = document.querySelectorAll(".botao-resposta");
     const botaoProximo = document.getElementById("botao-proximo");
-    const containerResultado = document.getElementById("resultado");
-    const elementoPontuacao = document.getElementById("pontuacao");
+    const resultadoElement = document.getElementById("resultado");
+    const pontuacaoElement = document.getElementById("pontuacao");
     const botaoRecomecar = document.getElementById("botao-recomecar");
 
-    function iniciarQuiz() {
-      indicePerguntaAtual = 0;
-      pontuacao = 0;
-      botaoProximo.style.display = "none";
-      containerResultado.style.display = "none";
-      exibirPergunta();
-    }
+    function carregarPergunta() {
+      const perguntaAtual = perguntas[indice];
+      perguntaElement.innerText = perguntaAtual.pergunta;
 
-    function exibirPergunta() {
-      resetarEstado();
-      const perguntaAtual = perguntas[indicePerguntaAtual];
-      elementoPergunta.innerText = perguntaAtual.pergunta;
-
-      // Atualiza os botões clonando para remover listeners antigos
-      botoesResposta.forEach((botao, index) => {
-        const novoBotao = botao.cloneNode(true);
-        novoBotao.innerText = perguntaAtual.respostas[index];
-        botao.parentNode.replaceChild(novoBotao, botao);
-      });
-
-      // Atualiza a lista para os novos botões clonados
-      botoesResposta = document.querySelectorAll(".botao-resposta");
-
-      // Adiciona listener aos botões
-      botoesResposta.forEach(botao => {
-        botao.addEventListener("click", selecionarResposta);
-      });
-    }
-
-    function resetarEstado() {
-      botaoProximo.style.display = "none";
-      botoesResposta.forEach(botao => {
+      opcoesElement.forEach((botao, i) => {
+        botao.innerText = perguntaAtual.respostas[i];
         botao.disabled = false;
         botao.classList.remove("correto", "incorreto");
+
+        botao.onclick = () => verificarResposta(botao, perguntaAtual.correta);
       });
+
+      botaoProximo.style.display = "none";
     }
 
-    function selecionarResposta(e) {
-      const botaoSelecionado = e.target;
-      const respostaCorreta = perguntas[indicePerguntaAtual].correta;
-
-      // Marca o botão selecionado como correto ou incorreto
-      if (botaoSelecionado.innerText === respostaCorreta) {
+    function verificarResposta(botaoSelecionado, correta) {
+      if (botaoSelecionado.innerText === correta) {
         botaoSelecionado.classList.add("correto");
-        pontuacao++;
+        acertos++;
       } else {
         botaoSelecionado.classList.add("incorreto");
+        erros++;
       }
 
-      // Marca o botão correto para feedback visual
-      botoesResposta.forEach(botao => {
-        if (botao.innerText === respostaCorreta) {
+      opcoesElement.forEach(botao => {
+        botao.disabled = true;
+        if (botao.innerText === correta) {
           botao.classList.add("correto");
         }
-        botao.disabled = true;
       });
 
       botaoProximo.style.display = "block";
     }
 
-    function exibirResultado() {
-      containerResultado.style.display = "block";
-      elementoPontuacao.innerText = `${pontuacao} de ${perguntas.length}`;
+    function mostrarResultado() {
+      resultadoElement.style.display = "block";
+      pontuacaoElement.innerText = `${acertos} de ${perguntas.length}`;
 
-      var idUsuario = sessionStorage.ID_USUARIO
-      var fkQuiz = 1
-      var perguntasTotal = perguntas.length
-      var percentual = ((pontuacao / perguntas.length) * 100)
-      var percentual2 = percentual.toFixed(2)
+      const percentual = ((acertos / perguntas.length) * 100).toFixed(2);
 
-      fetch("/quizfacil/cadastrar", {
+      const idUsuario = sessionStorage.ID_USUARIO;
+      const fkQuiz = 1;
+
+      if (!idUsuario) {
+        console.warn("Usuário não está logado, resultado não será enviado.");
+        return;
+      }
+
+      fetch("/quiz/cadastrar", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-                idUsuarioServer: idUsuario,
-                fkQuizServer: fkQuiz,
-                total_perguntasServer: perguntasTotal,
-                acertosServer: pontuacao,
-                percentualServer: percentual2
-
-            })
+          idUsuarioServer: idUsuario,
+          fkQuizServer: fkQuiz,
+          total_perguntasServer: perguntas.length,
+          acertosServer: acertos,
+          percentualServer: percentual
+        }),
       })
-        .then(response => response.json())
-        .then(data => {
-          console.log("Dados salvos com sucesso:", data);
+        .then(res => {
+          if (res.ok) {
+            console.log("Resultado enviado com sucesso");
+          } else {
+            console.error("Falha ao enviar resultado");
+          }
         })
-        .catch(error => {
-          console.error("Erro ao salvar desempenho:", error);
-        });
+        .catch(err => console.error("Erro na requisição:", err));
     }
 
     botaoProximo.addEventListener("click", () => {
-      indicePerguntaAtual++;
-      if (indicePerguntaAtual < perguntas.length) {
-        exibirPergunta();
+      indice++;
+      if (indice < perguntas.length) {
+        carregarPergunta();
       } else {
-        exibirResultado();
+        mostrarResultado();
       }
     });
 
-    botaoRecomecar.addEventListener("click", iniciarQuiz);
+    botaoRecomecar.addEventListener("click", () => {
+      indice = 0;
+      acertos = 0;
+      erros = 0;
+      resultadoElement.style.display = "none";
+      carregarPergunta();
+    });
 
-    iniciarQuiz();
-
-
+    carregarPergunta();
   </script>
 
 </body>

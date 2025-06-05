@@ -1,208 +1,154 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dashboard | Olymp</title>
+    <link rel="stylesheet" href="./css/dashboards.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Dashboard | Olymp</title>
-  <link rel="stylesheet" href="./css/dashboards.css">
-</head>
+  <body>
+    <aside class="sidebar">
+      <div class="user-name" id="userName">Olá, @</div>
+      <nav>
+        <a href="./index.html">Home</a>
+        <a href="./quizzes.html">Quizzes</a>
+      </nav>
+    </aside>
 
-<body>
-  <aside class="sidebar">
-    <div class="user-name" id="userName">Olá, @</div>
-    <nav>
-      <a href="./index.html">Home</a>
-      <a href="./quizzes.html">Quizzes</a>
-    </nav>
-  </aside>
-
-  <div class="content">
-    <div class="kpis-container">
-      <div class="kpi">
-        Taxa Quiz Fácil
-        <div class="value" id="kpi-facil" style="color:#4caf50;">90%</div>
-        <div class="kpi-subtitle">Desempenho no nível Fácil</div>
-      </div>
-      <div class="kpi">
-        Taxa Quiz Médio
-        <div class="value" id="kpi-medio" style="color:#ffc107;">60%</div>
-        <div class="kpi-subtitle">Desempenho no nível Médio</div>
-      </div>
-      <div class="kpi">
-        Taxa Quiz Díficil
-        <div class="value" id="kpi-dificil" style="color:#f44336;">30%</div>
-        <div class="kpi-subtitle">Desempenho no nível Díficil</div>
-      </div>
-    </div>
-
-    <div class="main-container">
-      <div class="container">
-        <canvas id="myChart"></canvas>
+    <div class="content">
+      <div class="kpis-container">
+        <div class="kpi">
+          Taxa Quiz Fácil
+          <div class="value" id="kpi-facil" style="color: #4caf50">90%</div>
+          <div class="kpi-subtitle">Desempenho no nível Fácil</div>
+        </div>
+        <div class="kpi">
+          Taxa Quiz Médio
+          <div class="value" id="kpi-medio" style="color: #ffc107">60%</div>
+          <div class="kpi-subtitle">Desempenho no nível Médio</div>
+        </div>
+        <div class="kpi">
+          Taxa Quiz Difícil
+          <div class="value" id="kpi-dificil" style="color: #f44336">30%</div>
+          <div class="kpi-subtitle">Desempenho no nível Difícil</div>
+        </div>
       </div>
 
-      <div id="ranking">
-        <div class="ranking">
-          <h3>🏆 Ranking dos Jogadores</h3>
-          <ol id="ranking-list"></ol>
+      <div class="main-container">
+        <div class="container">
+          <canvas id="myChart"></canvas>
+        </div>
+
+        <div id="ranking">
+          <div class="ranking">
+            <h3>🏆 Ranking dos Jogadores</h3>
+            <ol id="ranking-list">
+              <li>Jogador 1 - 150 pts</li>
+              <li>Jogador 2 - 120 pts</li>
+              <li>Jogador 3 - 90 pts</li>
+            </ol>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Script para gerar gráfico -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
 
-  <!-- <script>
-    // só entra se estiver logado
-    if (!sessionStorage.ID_USUARIO) {
-      alert("Você precisa estar logado para acessar a Dashboard.");
-      window.location.href = "login.html";
-    } else {
-      // Atualiza nome do usuário
-      const nomeUsuario = sessionStorage.NOME_USUARIO || "@";
-      document.getElementById("userName").textContent = "Olá, " + nomeUsuario;
-    }
 
-    let chart;
+      async function carregarDados() {
+        const idUsuario = sessionStorage.ID_USUARIO;
 
-        function calcularTaxa(acertos, erros) {
-          acertos = Number(acertos);
-          erros = Number(erros);
-          const tentativas = acertos + erros;
-          if (tentativas === 0) return '0.00%';
-          return ((acertos / tentativas) * 100).toFixed(2) + '%';
+        if (!idUsuario) {
+          alert("Usuário não logado!");
+          window.location.href = "./login.html";
+          return;
         }
 
-        document.getElementById('kpi-facil').textContent = calcularTaxa(dados.facil.acertos, dados.facil.erros);
-        document.getElementById('kpi-medio').textContent = calcularTaxa(dados.medio.acertos, dados.medio.erros);
-        document.getElementById('kpi-dificil').textContent = calcularTaxa(dados.dificil.acertos, dados.dificil.erros);
+        // Atualiza nome usuário mesmo se API der erro
+        const nomeUsuario = sessionStorage.NOME_USUARIO || "Usuário";
+        document.getElementById("userName").innerText = `Olá, @${nomeUsuario}`;
 
-        const ctx = document.getElementById('myChart').getContext('2d');
-        if (chart) chart.destroy();
+        try {
+          // Dados desempenho
+          const resposta = await fetch(
+            `http://localhost:3333/quiz/desempenho/${idUsuario}`
+          );
+          if (!resposta.ok)
+            throw new Error(`Erro ao buscar desempenho: ${resposta.status}`);
+          const dados = await resposta.json();
 
-        chart = new Chart(ctx, {
-          type: 'bar',
-          data: {
-            labels: ['Fácil', 'Médio', 'Díficil'],
-            datasets: [
-              {
-                label: 'Quantidade de Acertos',
-                data: [dados.facil.acertos, dados.medio.acertos, dados.dificil.acertos],
-                backgroundColor: 'rgba(76, 175, 80, 0.7)',
-                borderWidth: 1,
-                borderColor: 'rgb(76, 175, 80)',
-              },
-              {
-                label: 'Quantidade de Erros',
-                data: [dados.facil.erros, dados.medio.erros, dados.dificil.erros],
-                backgroundColor: 'rgba(244, 67, 54, 0.7)',
-                borderWidth: 1,
-                borderColor: 'rgb(244, 67, 54)',
-              },
-              {
-                label: 'Tentativas Totais',
-                data: [dados.facil.tentativas, dados.medio.tentativas, dados.dificil.tentativas],
-                backgroundColor: 'rgba(255, 193, 7, 0.7)',
-                borderWidth: 1,
-                borderColor: 'rgb(255, 193, 7)',
-              },
-            ],
-          },
-          options: {
-            animation: {
-              duration: 2000,
-              easing: 'easeOutBounce',
-            },
-            layout: {
-              padding: {
-                left: 20,
-                right: 20,
-                top: 20,
-                bottom: 50,
-              },
-            },
-            plugins: {
-              legend: {
-                display: true,
-                position: 'bottom',
-              },
-              title: {
-                display: true,
-                text: 'Desempenho dos Jogadores por Dificuldade',
-                font: {
-                  size: 30,
-                  weight: 'bold',
-                  family: 'Arial',
-                },
-                color: 'black',
-              },
-              tooltip: {
-                enabled: true,
-                backgroundColor: 'rgb(0,0,0)',
-              },
-            },
-            scales: {
-              y: {
-                beginAtZero: true,
-                grid: { display: false },
-                ticks: {
-                  color: 'black',
-                  font: { size: 14, weight: 'bold' },
-                },
-              },
-              x: {
-                ticks: {
-                  color: 'black',
-                  font: { size: 14, weight: 'bold' },
-                },
-              },
-            },
-          },
-        });
-      } catch (error) {
-        console.error('Erro ao carregar desempenho:', error);
-      }
-    }
+          const desempenhoFacil = dados.find(d => d.IdQuiz == 1);
+          const desempenhoMedio = dados.find(d => d.IdQuiz == 2);
+          const desempenhoDificil = dados.find(d => d.IdQuiz == 3);
 
-    async function carregarRanking() {
-      try {
-        const resposta = await fetch('http://localhost:3001/api/ranking');
-        const dados = await resposta.json();
+          const taxaFacil = desempenhoFacil ? Number(desempenhoFacil.percentual) : 0;
+          const taxaMedio = desempenhoMedio ? Number(desempenhoMedio.percentual) : 0;
+          const taxaDificil = 20;
 
-        const lista = document.getElementById('ranking-list');
-        lista.innerHTML = '';
+          // Atualiza KPIs
+          document.getElementById("kpi-facil").innerText = `${taxaFacil}%`;
+          document.getElementById("kpi-medio").innerText = `${taxaMedio}%`;
+          document.getElementById("kpi-dificil").innerText = `${taxaDificil}%`;
+          console.log("Dificil:", dados.find(d => d.IdQuiz == 3));
 
-        dados.forEach((item, index) => {
-          const li = document.createElement('li');
-          li.innerText = `${index + 1}º ${item.nome} — ${item.pontuacao}%`;
-          lista.appendChild(li);
-        });
-      } catch (erro) {
-        console.error('Erro ao carregar ranking:', erro);
-      }
-    }
+          console.log("Valores para o gráfico:", [taxaFacil, taxaMedio, taxaDificil]);
+          // Atualiza gráfico
+          myChart.data.datasets[0].data = [taxaFacil, taxaMedio, taxaDificil];
+          myChart.update();
 
-    function atualizarRanking() {
-      fetch('http://localhost:3001/api/ranking')
-        .then((res) => res.json())
-        .then((dados) => {
-          const lista = document.getElementById('ranking-list');
-          lista.innerHTML = '';
-          dados.forEach((item, index) => {
-            const li = document.createElement('li');
-            li.innerText = `${index + 1}º ${item.nome} — ${item.pontuacao}%`;
-            lista.appendChild(li);
+          // Dados ranking geral
+          const respostaRanking = await fetch(
+            `http://localhost:3333/quiz/ranking`
+          );
+          if (!respostaRanking.ok)
+            throw new Error(
+              `Erro ao buscar ranking: ${respostaRanking.status}`
+            );
+          const ranking = await respostaRanking.json();
+
+          const rankingList = document.getElementById("ranking-list");
+          rankingList.innerHTML = "";
+
+          ranking.forEach((jogador) => {
+            const li = document.createElement("li");
+            li.innerText = `${jogador.nome} - ${jogador.total_pontuacao} pts`;
+            rankingList.appendChild(li);
           });
-        })
-        .catch((erro) => console.error('Erro ao atualizar ranking:', erro));
-    }
+        } catch (error) {
+          console.error("Erro ao carregar dados:", error);
+          alert(
+            "Não foi possível carregar os dados da dashboard. Tente novamente mais tarde."
+          );
+        }
+      }
 
-    window.onload = async () => {
-      await carregarDesempenho();
-      await carregarRanking();
-      setInterval(atualizarRanking, 10000);
-    };
-  </script> -->
-</body>
+         const ctx = document.getElementById("myChart").getContext("2d");
+      const myChart = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: ["Fácil", "Médio", "Difícil"],
+          datasets: [
+            {
+              label: "Taxa de Acerto (%)",
+              data: [10, 30, 90], // Começa vazio, será atualizado
+              backgroundColor: ["#4caf50", "#ffc107", "#f44336"],
+              borderColor: ["#388e3c", "#ffa000", "#d32f2f"],
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          scales: {
+            y: { beginAtZero: true, max: 100 },
+          },
+        },
+      });
 
+      carregarDados();
+      
+    </script>
+  </body>
 </html>

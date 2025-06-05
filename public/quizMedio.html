@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quiz Nível Fácil | Olymp</title>
+    <title>Quiz Nível Médio | Olymp</title>
     <link rel="stylesheet" href="css/quizzes.css" />
 </head>
 
@@ -63,6 +63,7 @@
     </div>
 
     <script>
+        // Verifica se o usuário está logado para mostrar links específicos
         function verificarLogin() {
             const usuarioLogado = sessionStorage.getItem("EMAIL_USUARIO");
 
@@ -155,37 +156,38 @@
             botaoProximo.style.display = "block";
         }
 
-       function exibirResultado() {
-      containerResultado.style.display = "block";
-      elementoPontuacao.innerText = `${pontuacao} de ${perguntas.length}`;
+        function exibirResultado() {
+            containerResultado.style.display = "block";
+            elementoPontuacao.innerText = `${pontuacao} de ${perguntas.length}`;
 
-      var idUsuario = sessionStorage.ID_USUARIO
-      var fkQuiz = 2
-      var perguntasTotal = pergunta.length
-      var percentual = ((pontuacao / perguntas.length) * 100).toFixed(2)
+            // Pegando o ID do usuário salvo na sessionStorage
+            const idUsuario = sessionStorage.getItem("ID_USUARIO");
+            const fkQuiz = 2; // ID do quiz médio
+            const totalPerguntas = perguntas.length;
+            const percentual = ((pontuacao / totalPerguntas) * 100).toFixed(2);
 
-      fetch("/quizmedio/cadastrar", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-                idUsuarioServer: idUsuario,
-                fkQuizServer: fkQuiz,
-                total_perguntasServer: perguntasTotal,
-                acertosServer: pontuacao,
-                percentualServer: percentual
-
+            fetch("/quiz/cadastrar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    idUsuarioServer: idUsuario,
+                    fkQuizServer: fkQuiz,
+                    total_perguntasServer: totalPerguntas,
+                    acertosServer: pontuacao,
+                    percentualServer: percentual
+                })
             })
-      })
-        .then(response => response.json())
-        .then(data => {
-          console.log("Dados salvos com sucesso:", data);
-        })
-        .catch(error => {
-          console.error("Erro ao salvar desempenho:", error);
-        });
-    }
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Dados salvos com sucesso:", data);
+                })
+                .catch(error => {
+                    console.error("Erro ao salvar desempenho:", error);
+                });
+        }
+
         botaoProximo.addEventListener("click", () => {
             indicePerguntaAtual++;
             if (indicePerguntaAtual < perguntas.length) {
@@ -200,7 +202,6 @@
         iniciarQuiz();
 
     </script>
-
 
 </body>
 

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Quiz Nível Díficil | Olymp</title>
+  <title>Quiz Nível Difícil | Olymp</title>
   <link rel="stylesheet" href="css/quizzes.css" />
 </head>
 
@@ -46,10 +46,10 @@
         <div class="pergunta-container">
           <h2 id="pergunta">Pergunta aqui</h2>
           <ul>
-            <li><button class="botao-resposta">Resposta 1</button></li>
-            <li><button class="botao-resposta">Resposta 2</button></li>
-            <li><button class="botao-resposta">Resposta 3</button></li>
-            <li><button class="botao-resposta">Resposta 4</button></li>
+            <li><button class="botao-resposta" tabindex="0">Resposta 1</button></li>
+            <li><button class="botao-resposta" tabindex="0">Resposta 2</button></li>
+            <li><button class="botao-resposta" tabindex="0">Resposta 3</button></li>
+            <li><button class="botao-resposta" tabindex="0">Resposta 4</button></li>
           </ul>
         </div>
         <button id="botao-proximo" class="botao" style="display: none;">Próxima Pergunta</button>
@@ -211,32 +211,35 @@
       containerResultado.style.display = "block";
       elementoPontuacao.innerText = `${pontuacao} de ${perguntas.length}`;
 
-      var idUsuario = sessionStorage.ID_USUARIO
-      var fkQuiz = 3
-      var perguntasTotal = pergunta.length
-      var percentual = ((pontuacao / perguntas.length) * 100).toFixed(2)
+      const idUsuario = sessionStorage.ID_USUARIO;
+      const fkQuiz = 3;
+      const perguntasTotal = perguntas.length; // corrigido aqui
+      const percentual = ((pontuacao / perguntas.length) * 100).toFixed(2);
 
-      fetch("/quizdificil/cadastrar", {
+      if (!idUsuario) {
+        console.warn("Usuário não logado. Resultado não será enviado.");
+        return;
+      }
+
+      fetch("/quiz/cadastrar", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-                idUsuarioServer: idUsuario,
-                fkQuizServer: fkQuiz,
-                total_perguntasServer: perguntasTotal,
-                acertosServer: pontuacao,
-                percentualServer: percentual
-
-            })
+          idUsuarioServer: idUsuario,
+          fkQuizServer: fkQuiz,
+          total_perguntasServer: perguntasTotal,
+          acertosServer: pontuacao,
+          percentualServer: percentual
+        }),
       })
-        .then(response => response.json())
-        .then(data => {
-          console.log("Dados salvos com sucesso:", data);
+        .then(res => {
+          if (res.ok) {
+            console.log("Resultado enviado com sucesso");
+          } else {
+            console.error("Falha ao enviar resultado");
+          }
         })
-        .catch(error => {
-          console.error("Erro ao salvar desempenho:", error);
-        });
+        .catch(err => console.error("Erro na requisição:", err));
     }
 
     botaoProximo.addEventListener("click", () => {
@@ -252,8 +255,6 @@
     botaoRecomecar.addEventListener("click", iniciarQuiz);
 
     iniciarQuiz();
-
-
   </script>
 </body>
 
